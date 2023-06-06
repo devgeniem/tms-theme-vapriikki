@@ -1,0 +1,109 @@
+{>"shared/base" /}
+
+{<content}
+    <main class="main-content" id="main-content">
+        {?SingleExhibition.content.image}
+            <section class="page__hero section is-relative pt-0 pb-0 has-background-cover" {@inlinebg id=SingleExhibition.content.image.id size="fullhd" /}>
+            </section>
+        {/SingleExhibition.content.image}
+
+        {?Header.breadcrumbs}
+            <div class="section pt-6 pb-7">
+                <div class="container">
+                    <div class="columns">
+                        <div class="column">
+                            {>"ui/breadcrumbs" breadcrumbs=Header.breadcrumbs /}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/Header.breadcrumbs}
+
+        <section class="section pt-0">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-12">
+                        <article class="entry">
+                            <header class="entry__header mb-6 mb-8-desktop mb-10-fullhd">
+                                <div class="columns">
+                                    <div class="column is-6 is-offset-3 has-text-centered keep-vertical-spacing">
+                                        {?SingleExhibition.content.fields.title}
+                                            <h2 class="h1 entry__title">
+                                                {SingleExhibition.content.fields.title|html}
+                                            </h2>
+                                        {/SingleExhibition.content.fields.title}
+
+                                        {?SingleExhibition.content.post_excerpt}
+                                            <p class="has-text-lead">
+                                                {SingleExhibition.content.post_excerpt|html}
+                                            </p>
+                                        {/SingleExhibition.content.post_excerpt}
+                                    </div>
+                                </div>
+
+                                <div class="column is-10 is-offset-1 has-border-bottom-1">
+                                    <div
+                                        class="entry__details pt-6 pb-6 is-flex is-justify-content-space-around is-flex-wrap-wrap">
+                                        {?SingleExhibition.content.date}
+                                            <div class="is-flex is-align-items-center">
+                                                {>"ui/icon" icon="date" class="icon--xlarge" /}
+
+                                                <p class="entry__meta-text mb-0 ml-3 ml-4-desktop ml-5-fullhd has-text-weight-medium has-text-primary">
+                                                    {SingleExhibition.content.date|html}
+                                                </p>
+                                            </div>
+                                        {/SingleExhibition.content.date}
+
+                                        {?SingleExhibition.content.fields.location}
+                                            <div class="is-flex is-align-items-center">
+                                                {>"ui/icon" icon="location" class="icon--xlarge" /}
+
+                                                <p class="entry__meta-text mb-0 ml-3 ml-4-desktop ml-5-fullhd has-text-weight-medium has-text-primary is-uppercase">
+                                                    {SingleExhibition.content.fields.location|html}
+                                                </p>
+                                            </div>
+                                        {/SingleExhibition.content.fields.location}
+                                    </div>
+                                </div>
+                            </header>
+
+                            <div class="entry__content is-content-grid keep-vertical-spacing">
+                                {@content /}
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            {?SingleExhibition.content.fields.logo_wall_repeater}
+                <div class="section logo-wall layout-logo-wall p-8 has-background-secondary has-text-secondary-invert">
+                    <div class="container keep-vertical-spacing">
+
+                        {?SingleExhibition.content.fields.logo_wall_header}
+                            <h2 class="logo-wall__header is-align-full has-text-centered mt-0 mb-6">
+                                {SingleExhibition.content.fields.logo_wall_header|html}
+                            </h2>
+                        {/SingleExhibition.content.fields.logo_wall_header}
+
+                        <div class="logo-wall__items-wrapper is-align-full is-flex is-flex-direction-row is-flex-wrap-wrap is-justify-content-space-evenly is-align-content-center is-align-items-center has-text-centered {container_class|s}">
+                            {#SingleExhibition.content.fields.logo_wall_repeater}
+
+                                <div class="logo-wall__item m-3 m-5-tablet m-7-desktop is-inline-flex">
+                                    {?logo_wall_link.url}
+                                        <a href="{logo_wall_link.url|url}" target="{logo_wall_link.target|attr}" class="logo-wall__link is-block">
+                                            {@image id=logo_wall_logo.id size="medium" class="is-block" /}
+                                        </a>
+                                    {:else}
+                                        {@image id=logo_wall_logo.id size="medium" class="is-block" /}
+                                    {/logo_wall_link.url}
+                                </div>
+
+                            {/SingleExhibition.content.fields.logo_wall_repeater}
+                        </div>
+                    </div>
+                </div>
+            {/SingleExhibition.content.fields.logo_wall_repeater}
+
+        </section>
+    </main>
+{/content}

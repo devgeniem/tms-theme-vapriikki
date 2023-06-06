@@ -1,0 +1,64 @@
+{>"shared/base" /}
+
+{<content}
+    {#ArchiveExhibition}
+        <main class="main-content section" id="main-content">
+            <div class="container">
+                {>"shared/archive-view-title" /}
+
+                {>"shared/exhibition-archive-tabs"  /}
+
+                {?results.show_past}
+                    {>"shared/archive-exhibition-filters" /}
+                {/results.show_past}
+
+                {?results.show_archived}
+                    {>"shared/archive-archived-exhibition-filters" /}
+                {/results.show_archived}
+
+                {#results.archived_exhibition_pages}
+
+                {/results.archived_exhibition_pages}
+
+                <div class="mt-5 mt-8-desktop">
+                    {?results.summary}
+                        <p role="status">{results.summary|html}</p>
+                    {/results.summary}
+
+                    <div
+                        class="archive-exhibition__results columns">
+                        <div class="column {^results.show_past}is-10-desktop is-offset-1-desktop{/results.show_past}">
+                            <div class="columns is-multiline is-variable is-tablet keep-vertical-spacing">
+                                {#results.show_upcoming}
+                                    {#results.upcoming_exhibitions}
+                                        {>"{results.partial}" exhibition=. /}
+                                    {/results.upcoming_exhibitions}
+                                {/results.show_upcoming}
+
+                                {#results.show_ongoing}
+                                    {#results.current_exhibitions}
+                                        {>"{results.partial}" exhibition=. /}
+                                    {/results.current_exhibitions}
+                                {/results.show_ongoing}
+
+                                {#results.show_past}
+                                    {#results.posts}
+                                        {>"{results.partial}" exhibition=. /}
+                                    {/results.posts}
+                                {/results.show_past}
+
+                                {?results.show_archived}
+                                    {#results.archived_exhibitions}
+                                        {>"{results.archived_exhibitions_partial}" exhibition=. /}
+                                    {/results.archived_exhibitions}
+                                {/results.show_archived}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {>"shared/archive-pagination" /}
+            </div>
+        </main>
+    {/ArchiveExhibition}
+{/content}
