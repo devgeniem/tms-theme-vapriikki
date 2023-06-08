@@ -2,7 +2,27 @@
  * Copyright (c) 2021. Geniem Oy
  */
 
-@import "themes/includes";
+ @import "~bulma/sass/utilities/all";
+ @import "./settings/brand/functions";
+
+// All Tampere brand colors
+$color-white: #ffffff;
+$color-black: #000000;
+
+// Override Bulma
+$white: $color-white;
+$black: $color-black;
+
+$color-vapriikki-red: #f63440;
+$color-tekstin-vari: $color-black;
+
+$color-vaalean-harmaa: #A6A7AC;
+$color-ui-border: #414141;
+$color-ui-border-light: #767676;
+$color-gray: #a6a7ac;
+
+$color-vaalean-harmaa: #A6A7AC;
+$color-tumma-harmaa: #585857;
 
 $primary: $color-black;
 $primary-invert: $color-white;
@@ -103,6 +123,7 @@ $fly-out-nav-search-button-icon: currentColor;
 
 $duet-color-border: $color-vaalean-harmaa;
 
+@import "themes/includes";
 @import "../../../tms-theme-base/assets/styles/main";
 @import "main";
 

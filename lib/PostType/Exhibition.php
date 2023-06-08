@@ -7,6 +7,8 @@ namespace TMS\Theme\Vapriikki\PostType;
 
 use Closure;
 use TMS\Theme\Base\Interfaces\PostType;
+use TMS\Theme\Base\Traits\EnrichPost;
+use TMS\Theme\Vapriikki\Taxonomy\ExhibitionCategory;
 
 /**
  * Exhibition CPT
@@ -14,6 +16,8 @@ use TMS\Theme\Base\Interfaces\PostType;
  * @package TMS\Theme\Base\PostType
  */
 class Exhibition implements PostType {
+
+    use EnrichPost;
 
     /**
      * This defines the slug of this post type.
@@ -245,5 +249,16 @@ class Exhibition implements PostType {
         }
 
         return $this->get_breadcrumbs_base( true );
+    }
+
+    /**
+     * Get primary category.
+     *
+     * @param string $post_id Post ID.
+     *
+     * @return \WP_Term|null
+     */
+    public static function get_primary_category( $post_id ) {
+        return ExhibitionCategory::get_primary_category( $post_id );
     }
 }

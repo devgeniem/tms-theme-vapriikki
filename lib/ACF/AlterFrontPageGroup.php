@@ -5,6 +5,7 @@ namespace TMS\Theme\Vapriikki\ACF;
 use Geniem\ACF\Field;
 use TMS\Theme\Base\ACF\Layouts\HeroLayout as BaseThemeHeroLayout;
 use TMS\Theme\Vapriikki\ACF\Layouts\HeroLayout;
+use TMS\Theme\Vapriikki\ACF\Layouts\ExhibitionsLayout;
 
 /**
  * Class AlterPageFrontPageGroup
@@ -22,10 +23,29 @@ class AlterPageFrontPageGroup {
             10,
             1
         );
+
+        add_filter( 'tms/acf/field/fg_front_page_components_components/layouts',
+            [ $this, 'add_exhibitions_layout' ],
+            10,
+            1
+        );
     }
 
     /**
-     * Replace base theme hero with Muumimuseo hero.
+     * Replace base theme hero with Vapriikki hero.
+     *
+     * @param array $layouts Front page layouts.
+     *
+     * @return mixed
+     */
+    public function add_exhibitions_layout( $layouts ) {
+        $layouts[] = ExhibitionsLayout::class;
+
+        return $layouts;
+    }
+
+    /**
+     * Replace base theme hero with Vapriikki hero.
      *
      * @param array $layouts Front page layouts.
      *

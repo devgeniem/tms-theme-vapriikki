@@ -319,7 +319,7 @@ class ArchiveExhibition extends BaseModel {
         $is_past_archive         = $this->is_past_archive();
         $is_archived_exhibitions = $this->is_archived_exhibitions();
         $is_upcoming_archive     = $this->is_upcoming_archive();
-        $is_ongoing_archive      = ! $is_past_archive && ! $is_upcoming_archive;
+        $is_ongoing_archive      = ! $is_past_archive && ! $is_upcoming_archive && ! $is_archived_exhibitions;
         $per_page                = ( $is_past_archive ) ? self::PAST_ITEMS_PER_PAGE : ( ( $is_upcoming_archive ) ? self::UPCOMING_ITEMS_PER_PAGE : self::ONGOING_ITEMS_PER_PAGE );
         $current_exhibitions     = array_filter( $this->results->all, [ $this, 'is_current' ] );
         $upcoming_exhibitions    = $this->results->upcoming;
@@ -621,18 +621,19 @@ class ArchiveExhibition extends BaseModel {
                 foreach( $exhibition_repeater as $exhibition ) {
                     $exhibition['post_title'] = $exhibition['archived_exhibition_name'];
                     $start_date               = $exhibition['archived_exhibition_date_start'];
-        
+                    $dates                    = '';
+
                     if ( ! empty( $start_date ) ) {
                         $dates    = $start_date;
                         $end_date = $exhibition['archived_exhibition_date_end'];
-            
+
                         if ( ! empty( $end_date ) ) {
                             $dates .= ' - ' . $end_date;
                         }
                     }
-        
+
                     $exhibition['date'] = $dates;
-    
+
                     $archived_exhibitions[] = $exhibition;
                 }   
             }

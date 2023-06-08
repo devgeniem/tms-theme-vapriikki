@@ -1,6 +1,6 @@
 {?tabs}
-    <div class="columns pt-6 pb-6">
-        <div class="post-type-archive-exhibition__tab column is-3 has-text-weight-semibold {?tabs.ongoing.is_active}is-active{/tabs.ongoing.is_active}">
+    <div class="columns pt-6 pb-6 is-flex-wrap-wrap">
+        <div class="post-type-archive-exhibition__tab column is-6-tablet is-3-fullhd has-text-weight-semibold {?tabs.ongoing.is_active}is-active{/tabs.ongoing.is_active}">
             <a class="post-type-archive-exhibition__tab-link"
                href="{tabs.ongoing.link|url}">{tabs.ongoing.text|html}
                 <div class="post-type-archive-exhibition__item-count-container">
@@ -9,7 +9,7 @@
             </a>
         </div>
 
-        <div class="post-type-archive-exhibition__tab column is-3 has-text-weight-semibold {?tabs.upcoming.is_active}is-active{/tabs.upcoming.is_active}">
+        <div class="post-type-archive-exhibition__tab column is-6-tablet is-3-fullhd has-text-weight-semibold {?tabs.upcoming.is_active}is-active{/tabs.upcoming.is_active}">
             <a class="post-type-archive-exhibition__tab-link"
                href="{tabs.upcoming.link|url}">{tabs.upcoming.text|html}
                 <div class="post-type-archive-exhibition__item-count-container">
@@ -18,7 +18,7 @@
             </a>
         </div>
 
-        <div class="post-type-archive-exhibition__tab column is-3 has-text-weight-semibold{?tabs.past.is_active} is-active{/tabs.past.is_active}">
+        <div class="post-type-archive-exhibition__tab column is-6-tablet is-3-fullhd has-text-weight-semibold{?tabs.past.is_active} is-active{/tabs.past.is_active}">
             <a class="post-type-archive-exhibition__tab-link" href="{tabs.past.link|url}">
                 {tabs.past.text|html}
                 <div class="post-type-archive-exhibition__item-count-container">
@@ -27,7 +27,7 @@
             </a>
         </div>
 
-        <div class="post-type-archive-exhibition__tab column is-3 has-text-weight-semibold{?tabs.archived.is_active} is-active{/tabs.archived.is_active}">
+        <div class="post-type-archive-exhibition__tab column is-6-tablet is-3-fullhd has-text-weight-semibold{?tabs.archived.is_active} is-active{/tabs.archived.is_active}">
             <a class="post-type-archive-exhibition__tab-link" href="{tabs.archived.link|url}">
                 {tabs.archived.text|html}
                 <div class="post-type-archive-exhibition__item-count-container">

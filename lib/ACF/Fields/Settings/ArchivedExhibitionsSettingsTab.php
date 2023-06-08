@@ -83,36 +83,38 @@ class ArchivedExhibitionsSettingsTab extends Tab {
 
         try {
             $exhibition_repeater_field = ( new Field\Repeater( $strings['exhibitions']['title'] ) )
-                ->set_key( "${key}_archived_exhibitions" )
+                ->set_key( "{$key}_archived_exhibitions" )
                 ->set_name( 'archived_exhibitions' )
                 ->set_layout( 'block' )
                 ->set_instructions( $strings['exhibitions']['instructions'] );
 
             $exhibition_page_repeater = ( new Field\Repeater( $strings['exhibitions']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_page_repeater" )
+                ->set_key( "{$key}_archived_exhibition_page_repeater" )
                 ->set_name( 'archived_exhibition_page_repeater' )
                 ->set_layout( 'block' )
                 ->set_instructions( $strings['exhibitions']['instructions'] );
 
             $exhibition_page_name = ( new Field\Text( $strings['exhibitions']['single_page']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_page_name" )
+                ->set_key( "{$key}_archived_exhibition_page_name" )
                 ->set_name( 'archived_exhibition_page_name' )
+                ->set_required()
                 ->set_wrapper_width( 50 )
                 ->set_instructions( $strings['exhibitions']['single_page']['instructions'] );
 
             $exhibition_name = ( new Field\Text( $strings['exhibitions']['name']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_name" )
+                ->set_key( "{$key}_archived_exhibition_name" )
                 ->set_name( 'archived_exhibition_name' )
+                ->set_required()
                 ->set_instructions( $strings['exhibitions']['name']['instructions'] );
 
             $exhibition_date_start = ( new Field\DatePicker( $strings['exhibitions']['date_start']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_date_start" )
+                ->set_key( "{$key}_archived_exhibition_date_start" )
                 ->set_name( 'archived_exhibition_date_start' )
                 ->set_wrapper_width( 50 )
                 ->set_instructions( $strings['exhibitions']['date_start']['instructions'] );
 
             $exhibition_date_end = ( new Field\DatePicker( $strings['exhibitions']['date_end']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_date_end" )
+                ->set_key( "{$key}_archived_exhibition_date_end" )
                 ->set_name( 'archived_exhibition_date_end' )
                 ->set_wrapper_width( 50 )
                 ->set_instructions( $strings['exhibitions']['date_end']['instructions'] );
