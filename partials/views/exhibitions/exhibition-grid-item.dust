@@ -28,13 +28,5 @@
             {>"ui/icon" icon="date" class="icon--large entry__meta-icon" /}
             <span class="ml-2">{?dates}{dates|html}{/dates}</span>
         </div>
-
-        {@ne key=post_type value="post"}
-            {?category}
-                <a href="{category.permalink|attr}" class="pill {category_link_classes|attr}">
-                    {category.name|html}
-                </a>
-            {/category}
-        {/ne}
     </article>
 </div>
