@@ -51,7 +51,7 @@ class ExhibitionsLayout extends BaseLayout {
     protected function exhibition_item_field_group() : Field\Group {
 
         $strings = [
-            'exhibition'           => [
+            'exhibition' => [
                 'label'        => 'Näyttely',
                 'instructions' => '',
             ],
@@ -84,38 +84,38 @@ class ExhibitionsLayout extends BaseLayout {
         $key = $this->get_key();
 
         $strings = [
-            'title'             => [
+            'title' => [
                 'label'        => 'Otsikko',
                 'instructions' => '',
             ],
-            'description'       => [
+            'description' => [
                 'label'        => 'Kuvaus',
                 'instructions' => '',
             ],
-            'limit'             => [
+            'limit' => [
                 'label'        => 'Lukumäärä',
                 'instructions' => 'Valitse väliltä 4-12',
             ],
-            'exhibition'           => [
+            'exhibition' => [
                 'label'        => 'Näyttely',
                 'instructions' => '',
             ],
-            'feed_type'         => [
+            'feed_type' => [
                 'label'          => 'Listauksen tyyppi',
                 'instructions'   => '',
                 'type_automatic' => 'Automaattinen',
                 'type_manual'    => 'Manuaalinen',
             ],
-            'category'          => [
+            'category' => [
                 'label'        => 'Kategoriat',
                 'instructions' => 'Esitä artikkeleja valituista kategorioista',
             ],
-            'exhibition_repeater'  => [
+            'exhibition_repeater' => [
                 'label'        => 'Näyttelyt',
                 'instructions' => 'Valitse 4-12 näyttelyä',
                 'button'       => 'Lisää näyttely',
             ],
-            'link'              => [
+            'link' => [
                 'label'        => 'Linkki',
                 'instructions' => '',
             ],

@@ -610,15 +610,15 @@ class ArchiveExhibition extends BaseModel {
         $current_filter       = \get_query_var( self::ARCHIVED_QUERY_VAR );
         $exhibition_count     = 0;
 
-        foreach( $posts as $exhibitions ) {
+        foreach ( $posts as $exhibitions ) {
             $exhibition_repeater  = $exhibitions['archived_exhibition_page_repeater'];
             $exhibition_page_name = $exhibitions['archived_exhibition_page_name'];
             $exhibition_page_active = empty( $current_filter ) || $current_filter === str_replace( ' ', '', $exhibition_page_name ) ? 'selected' : '';
             $exhibitions['exhibition_page_active'] = $exhibition_page_active;
             $exhibition_count     += count( $exhibition_repeater );
 
-            if( empty( $current_filter ) || $current_filter === str_replace( ' ', '', $exhibition_page_name ) ) {
-                foreach( $exhibition_repeater as $exhibition ) {
+            if ( empty( $current_filter ) || $current_filter === str_replace( ' ', '', $exhibition_page_name ) ) {
+                foreach ( $exhibition_repeater as $exhibition ) {
                     $exhibition['post_title'] = $exhibition['archived_exhibition_name'];
                     $start_date               = $exhibition['archived_exhibition_date_start'];
                     $dates                    = '';
@@ -635,7 +635,7 @@ class ArchiveExhibition extends BaseModel {
                     $exhibition['date'] = $dates;
 
                     $archived_exhibitions[] = $exhibition;
-                }   
+                }
             }
         }
 
@@ -656,7 +656,7 @@ class ArchiveExhibition extends BaseModel {
 
         $exhibition_count = 0;
 
-        foreach( $posts as $exhibitions ) {
+        foreach ( $posts as $exhibitions ) {
             $exhibition_repeater = $exhibitions['archived_exhibition_page_repeater'];
             $exhibition_count    += count( $exhibition_repeater );
         }

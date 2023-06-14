@@ -94,7 +94,7 @@ class ExhibitionsFormatter implements Formatter {
                 }
 
                 $post_item->dates = $dates;
-                $data['posts'][] = Exhibition::enrich_post( $post_item, true, true );
+                $data['posts'][]  = Exhibition::enrich_post( $post_item, true, true );
             }
         }
 
