@@ -23,25 +23,6 @@ class AlterPageFrontPageGroup {
             10,
             1
         );
-
-        add_filter( 'tms/acf/field/fg_front_page_components_components/layouts',
-            [ $this, 'add_exhibitions_layout' ],
-            10,
-            1
-        );
-    }
-
-    /**
-     * Replace base theme hero with Vapriikki hero.
-     *
-     * @param array $layouts Front page layouts.
-     *
-     * @return mixed
-     */
-    public function add_exhibitions_layout( $layouts ) {
-        $layouts[] = ExhibitionsLayout::class;
-
-        return $layouts;
     }
 
     /**

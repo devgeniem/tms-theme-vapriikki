@@ -25,9 +25,9 @@ class ArchiveExhibition extends BaseModel {
     const YEAR_QUERY_VAR = 'exhibition-year';
 
     /**
-     * Year filter name for archived exhibitions.
+     * Year filter name for digital exhibitions.
      */
-    const ARCHIVED_QUERY_VAR = 'archived-exhibition';
+    const DIGITAL_QUERY_VAR = 'digital-exhibition';
 
     /**
      * Exhibition archive filter name.
@@ -143,8 +143,8 @@ class ArchiveExhibition extends BaseModel {
      *
      * @return bool
      */
-    public function is_archived_exhibitions() : bool {
-        return ! is_null( \get_query_var( self::ARCHIVED_QUERY_VAR, null ) );
+    public function is_digital_exhibitions() : bool {
+        return ! is_null( \get_query_var( self::DIGITAL_QUERY_VAR, null ) );
     }
 
     /**
@@ -270,7 +270,7 @@ class ArchiveExhibition extends BaseModel {
         $base_url            = get_post_type_archive_link( Exhibition::SLUG );
         $past_tab_active     = self::is_past_archive();
         $upcoming_tab_active = self::is_upcoming_archive();
-        $archived_tab_active = self::is_archived_exhibitions();
+        $digital_tab_active  = self::is_digital_exhibitions();
 
         return [
             'upcoming' => [
@@ -285,7 +285,7 @@ class ArchiveExhibition extends BaseModel {
             'ongoing' => [
                 'text'      => __( 'Current exhibitions', 'tms-theme-vapriikki' ),
                 'link'      => $base_url,
-                'is_active' => ! $past_tab_active && ! $upcoming_tab_active && ! $archived_tab_active,
+                'is_active' => ! $past_tab_active && ! $upcoming_tab_active && ! $digital_tab_active,
             ],
             'past'     => [
                 'text'      => __( 'Past exhibitions', 'tms-theme-vapriikki' ),
@@ -296,14 +296,14 @@ class ArchiveExhibition extends BaseModel {
                 ),
                 'is_active' => $past_tab_active,
             ],
-            'archived'     => [
-                'text'      => __( 'Archived exhibitions', 'tms-theme-vapriikki' ),
+            'digital'     => [
+                'text'      => __( 'Digital exhibitions', 'tms-theme-vapriikki' ),
                 'link'      => add_query_arg(
-                    self::ARCHIVED_QUERY_VAR,
+                    self::DIGITAL_QUERY_VAR,
                     '',
                     $base_url
                 ),
-                'is_active' => $archived_tab_active,
+                'is_active' => $digital_tab_active,
             ],
         ];
     }
@@ -317,9 +317,9 @@ class ArchiveExhibition extends BaseModel {
         global $wp_query;
 
         $is_past_archive         = $this->is_past_archive();
-        $is_archived_exhibitions = $this->is_archived_exhibitions();
+        $is_digital_exhibitions  = $this->is_digital_exhibitions();
         $is_upcoming_archive     = $this->is_upcoming_archive();
-        $is_ongoing_archive      = ! $is_past_archive && ! $is_upcoming_archive && ! $is_archived_exhibitions;
+        $is_ongoing_archive      = ! $is_past_archive && ! $is_upcoming_archive && ! $is_digital_exhibitions;
         $per_page                = ( $is_past_archive ) ? self::PAST_ITEMS_PER_PAGE : ( ( $is_upcoming_archive ) ? self::UPCOMING_ITEMS_PER_PAGE : self::ONGOING_ITEMS_PER_PAGE );
         $current_exhibitions     = array_filter( $this->results->all, [ $this, 'is_current' ] );
         $upcoming_exhibitions    = $this->results->upcoming;
@@ -328,7 +328,7 @@ class ArchiveExhibition extends BaseModel {
         $past_exhibitions            = $wp_query->posts;
         $this->results->past         = $past_exhibitions;
 
-        $archived_exhibitions = Settings::get_setting( 'archived_exhibitions' );
+        $digital_exhibitions = Settings::get_setting( 'digital_exhibitions' ) ?: [];
 
         $results = $is_past_archive ? $past_exhibitions : $upcoming_exhibitions;
         $this->set_pagination_data( count( $results ), $per_page );
@@ -337,20 +337,20 @@ class ArchiveExhibition extends BaseModel {
             'result_count'                 => count( $current_exhibitions ),
             'past_results_count'           => count( $unfiltered_past_exhibitions ),
             'upcoming_results_count'       => count( $upcoming_exhibitions ),
-            'archived_results_count'       => $this->count_archived_exhibitions( $archived_exhibitions ),
-            'show_archived'                => $is_archived_exhibitions,
+            'digital_results_count'        => $this->count_digital_exhibitions( $digital_exhibitions ),
+            'show_digital'                 => $is_digital_exhibitions,
             'show_past'                    => $is_past_archive,
             'show_ongoing'                 => $is_ongoing_archive,
             'show_upcoming'                => $is_upcoming_archive,
             'current_exhibitions'          => $this->reorder_main_exhibitions( $this->format_posts( $current_exhibitions ) ),
             'upcoming_exhibitions'         => $this->reorder_main_exhibitions( $this->format_posts( $upcoming_exhibitions ) ),
             'posts'                        => $this->reorder_main_exhibitions( $this->format_posts( $results ) ),
-            'archived_exhibition_pages'    => $this->archived_exhibitions_pages( $archived_exhibitions ),
-            'archived_exhibitions'         => $this->format_archived_exhibitions( $archived_exhibitions ),
+            'digital_exhibition_pages'     => $this->digital_exhibitions_pages( $digital_exhibitions ),
+            'digital_exhibitions'          => $this->format_digital_exhibitions( $digital_exhibitions ),
             'summary'                      => $this->results_summary( count( $results ) ),
             'have_posts'                   => ! empty( $results ) || ! empty( $current_exhibitions ),
             'partial'                      => $is_past_archive ? 'shared/exhibition-item-simple' : 'shared/exhibition-item',
-            'archived_exhibitions_partial' => 'shared/exhibition-item-archived',
+            'digital_exhibitions_partial'  => 'shared/exhibition-item-digital',
         ];
     }
 
@@ -393,13 +393,13 @@ class ArchiveExhibition extends BaseModel {
     }
 
     /**
-     * Format archived exhibitions for view
+     * Format digital exhibitions for view
      *
-     * @param array $posts Array of archived_exhibitions repeater items.
+     * @param array $posts Array of digital_exhibitions repeater items.
      *
      * @return array|bool
      */
-    protected function archived_exhibitions_pages( array $posts ) {
+    protected function digital_exhibitions_pages( array $posts ) {
         if ( empty( $posts ) ) {
             return false;
         }
@@ -407,14 +407,14 @@ class ArchiveExhibition extends BaseModel {
         return array_map( function ( $item ) {
             $base_url    = get_post_type_archive_link( Exhibition::SLUG );
             $page        = (object) $item;
-            $page->years = str_replace( ' ', '', $page->archived_exhibition_page_name );
+            $page->years = str_replace( ' ', '', $page->digital_exhibition_page_name );
             $page->link  = \add_query_arg(
-                self::ARCHIVED_QUERY_VAR,
+                self::DIGITAL_QUERY_VAR,
                 $page->years,
                 $base_url
             );
-            $current_filter = \get_query_var( self::ARCHIVED_QUERY_VAR );
-            $page->current  = ! empty( $current_filter ) & $current_filter === str_replace( ' ', '', $page->archived_exhibition_page_name ) ? 'selected' : '';
+            $current_filter = \get_query_var( self::DIGITAL_QUERY_VAR );
+            $page->current  = ! empty( $current_filter ) & $current_filter === str_replace( ' ', '', $page->digital_exhibition_page_name ) ? 'selected' : '';
 
             return $page;
         }, $posts );
@@ -595,37 +595,36 @@ class ArchiveExhibition extends BaseModel {
     }
 
     /**
-     * Format archived exhibitions for view
+     * Format digital exhibitions for view
      *
-     * @param array $posts Array of archived_exhibitions repeater items.
+     * @param array $posts Array of digital_exhibitions repeater items.
      *
      * @return array|bool
      */
-    protected function format_archived_exhibitions( array $posts ) {
+    protected function format_digital_exhibitions( array $posts ) {
         if ( empty( $posts ) ) {
             return false;
         }
 
-        $archived_exhibitions = [];
-        $current_filter       = \get_query_var( self::ARCHIVED_QUERY_VAR );
-        $exhibition_count     = 0;
+        $digital_exhibitions = [];
+        $current_filter       = \get_query_var( self::DIGITAL_QUERY_VAR );
 
         foreach ( $posts as $exhibitions ) {
-            $exhibition_repeater  = $exhibitions['archived_exhibition_page_repeater'];
-            $exhibition_page_name = $exhibitions['archived_exhibition_page_name'];
-            $exhibition_page_active = empty( $current_filter ) || $current_filter === str_replace( ' ', '', $exhibition_page_name ) ? 'selected' : '';
+            $exhibition_repeater                   = $exhibitions['digital_exhibition_page_repeater'];
+            $exhibition_page_name                  = $exhibitions['digital_exhibition_page_name'];
+            $exhibition_page_active                = empty( $current_filter ) || $current_filter === str_replace( ' ', '', $exhibition_page_name ) ? 'selected' : '';
             $exhibitions['exhibition_page_active'] = $exhibition_page_active;
-            $exhibition_count     += count( $exhibition_repeater );
 
-            if ( empty( $current_filter ) || $current_filter === str_replace( ' ', '', $exhibition_page_name ) ) {
+            if ( ( empty( $current_filter ) || $current_filter === str_replace( ' ', '', $exhibition_page_name ) ) && ! empty( $exhibition_repeater ) ) {
                 foreach ( $exhibition_repeater as $exhibition ) {
-                    $exhibition['post_title'] = $exhibition['archived_exhibition_name'];
-                    $start_date               = $exhibition['archived_exhibition_date_start'];
+                    $exhibition['post_title'] = $exhibition['digital_exhibition_name'];
+                    $exhibition['link']       = $exhibition['digital_exhibition_link'];
+                    $start_date               = $exhibition['digital_exhibition_date_start'];
                     $dates                    = '';
 
                     if ( ! empty( $start_date ) ) {
                         $dates    = $start_date;
-                        $end_date = $exhibition['archived_exhibition_date_end'];
+                        $end_date = $exhibition['digital_exhibition_date_end'];
 
                         if ( ! empty( $end_date ) ) {
                             $dates .= ' - ' . $end_date;
@@ -634,34 +633,45 @@ class ArchiveExhibition extends BaseModel {
 
                     $exhibition['date'] = $dates;
 
-                    $archived_exhibitions[] = $exhibition;
+                    $digital_exhibitions[] = $exhibition;
                 }
             }
         }
 
-        return $archived_exhibitions;
+        return $digital_exhibitions;
     }
 
     /**
-     * Count archived exhibitions
+     * Count digital exhibitions
      *
-     * @param array $posts Array of archived_exhibitions repeater items.
+     * @param array $posts Array of digital_exhibitions repeater items.
      *
      * @return array|bool
      */
-    protected function count_archived_exhibitions( array $posts ) {
-        if ( empty( $posts ) ) {
-            return false;
+    protected function count_digital_exhibitions( array $posts ) {
+        $total_count['empty'] = true;
+
+        if ( empty( $posts ) || ! isset( $posts ) ) {
+            return $total_count;
         }
 
         $exhibition_count = 0;
 
         foreach ( $posts as $exhibitions ) {
-            $exhibition_repeater = $exhibitions['archived_exhibition_page_repeater'];
-            $exhibition_count    += count( $exhibition_repeater );
+            $exhibition_repeater = $exhibitions['digital_exhibition_page_repeater'];
+            if ( empty( $exhibition_repeater ) || ! isset( $exhibition_repeater ) ) {
+                return $total_count;
+            }
+
+            $exhibition_count += count( $exhibition_repeater );
         }
 
-        $total_count = $exhibition_count;
+        if ( $exhibition_count !== 0 ) {
+            $total_count['empty'] = false;
+        }
+
+
+        $total_count['number'] = $exhibition_count;
 
         return $total_count;
     }

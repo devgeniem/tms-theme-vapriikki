@@ -6,6 +6,7 @@
 namespace TMS\Theme\Vapriikki\ACF;
 
 use TMS\Theme\Vapriikki\ACF\Layouts\CustomHtmlLayout;
+use TMS\Theme\Vapriikki\ACF\Layouts\ExhibitionsLayout;
 
 /**
  * AlterComponents
@@ -50,6 +51,41 @@ class AlterComponents {
             10,
             2
         );
+
+        \add_filter(
+            'tms/acf/field/fg_onepager_components_components/layouts',
+            [ $this, 'add_exhibitions_layout' ],
+            10,
+            2
+        );
+
+        \add_filter(
+            'tms/acf/field/fg_page_components_components/layouts',
+            [ $this, 'add_exhibitions_layout' ],
+            10,
+            2
+        );
+
+        \add_filter(
+            'tms/acf/field/fg_front_page_components_components/layouts',
+            [ $this, 'add_exhibitions_layout' ],
+            10,
+            2
+        );
+
+        \add_filter(
+            'tms/acf/field/fg_post_fields_components/layouts',
+            [ $this, 'add_exhibitions_layout' ],
+            10,
+            2
+        );
+
+        \add_filter(
+            'tms/acf/field/fg_dynamic_event_fields_components/layouts',
+            [ $this, 'add_exhibitions_layout' ],
+            10,
+            2
+        );
     }
 
     /**
@@ -62,6 +98,19 @@ class AlterComponents {
      */
     public function add_html_layout( array $layouts, string $key ) : array {
         $layouts[] = new CustomHtmlLayout( $key );
+
+        return $layouts;
+    }
+
+    /**
+     * Add exhibitions layout to components
+     *
+     * @param array $layouts Front page layouts.
+     *
+     * @return mixed
+     */
+    public function add_exhibitions_layout( array $layouts, string $key ) : array {
+        $layouts[] = new ExhibitionsLayout( $key );
 
         return $layouts;
     }

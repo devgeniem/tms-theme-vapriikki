@@ -93,7 +93,9 @@ class ExhibitionsFormatter implements Formatter {
                     }
                 }
 
-                $post_item->dates = $dates;
+                $post_item->dates          = $dates;
+                $post_item->is_upcoming    = \get_field( 'is_upcoming', $post_item->ID );
+                $post_item->upcoming_badge = __( 'Upcoming', 'tms-theme-vapriikki' );
                 $data['posts'][]  = Exhibition::enrich_post( $post_item, true, true );
             }
         }

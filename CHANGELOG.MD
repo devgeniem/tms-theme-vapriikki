@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Added grey background-color to color options
+- Changed Archived exhibitions name to Digital exhibitions & add some checks if digital exhibitions are empty
+- Added link-field to single Digital exhibition
+- Allow exhibitions lift-component on all page templates
+- Change primary font-family & font-weight
+- Added bottom border to cta-component, left border to 'upcoming'-badge on exhibitions
+
 ## [0.2.0] - 2023-06-08
 
 - TMS-948: Add Manual Event CPT and special page template for combining manual and API events.

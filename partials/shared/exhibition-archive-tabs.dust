@@ -1,6 +1,9 @@
 {?tabs}
     <div class="columns pt-6 pb-6 is-flex-wrap-wrap">
-        <div class="post-type-archive-exhibition__tab column is-6-tablet is-3-fullhd has-text-weight-semibold {?tabs.ongoing.is_active}is-active{/tabs.ongoing.is_active}">
+        <div class="post-type-archive-exhibition__tab column 
+        {?results.digital_results_count.empty}is-4-fullhd
+        {:else}is-6-tablet is-3-fullhd{/results.digital_results_count.empty} 
+        has-text-weight-semibold {?tabs.ongoing.is_active}is-active{/tabs.ongoing.is_active}">
             <a class="post-type-archive-exhibition__tab-link"
                href="{tabs.ongoing.link|url}">{tabs.ongoing.text|html}
                 <div class="post-type-archive-exhibition__item-count-container">
@@ -9,7 +12,10 @@
             </a>
         </div>
 
-        <div class="post-type-archive-exhibition__tab column is-6-tablet is-3-fullhd has-text-weight-semibold {?tabs.upcoming.is_active}is-active{/tabs.upcoming.is_active}">
+        <div class="post-type-archive-exhibition__tab column 
+        {?results.digital_results_count.empty}is-4-fullhd
+        {:else}is-6-tablet is-3-fullhd{/results.digital_results_count.empty} 
+        has-text-weight-semibold {?tabs.upcoming.is_active}is-active{/tabs.upcoming.is_active}">
             <a class="post-type-archive-exhibition__tab-link"
                href="{tabs.upcoming.link|url}">{tabs.upcoming.text|html}
                 <div class="post-type-archive-exhibition__item-count-container">
@@ -18,20 +24,25 @@
             </a>
         </div>
 
-        <div class="post-type-archive-exhibition__tab column is-6-tablet is-3-fullhd has-text-weight-semibold{?tabs.past.is_active} is-active{/tabs.past.is_active}">
+        {^results.digital_results_count.empty}
+            <div class="post-type-archive-exhibition__tab column is-6-tablet is-3-fullhd has-text-weight-semibold{?tabs.digital.is_active} is-active{/tabs.digital.is_active}">
+                <a class="post-type-archive-exhibition__tab-link" href="{tabs.digital.link|url}">
+                    {tabs.digital.text|html}
+                    <div class="post-type-archive-exhibition__item-count-container">
+                        <p class="post-type-archive-exhibition__item-count">{results.digital_results_count.number|html}</p>
+                    </div>
+                </a>
+            </div>
+        {/results.digital_results_count.empty}
+
+        <div class="post-type-archive-exhibition__tab column 
+        {?results.digital_results_count.empty}is-4-fullhd
+        {:else}is-6-tablet is-3-fullhd{/results.digital_results_count.empty} 
+        has-text-weight-semibold{?tabs.past.is_active} is-active{/tabs.past.is_active}">
             <a class="post-type-archive-exhibition__tab-link" href="{tabs.past.link|url}">
                 {tabs.past.text|html}
                 <div class="post-type-archive-exhibition__item-count-container">
                     <p class="post-type-archive-exhibition__item-count">{results.past_results_count|html}</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="post-type-archive-exhibition__tab column is-6-tablet is-3-fullhd has-text-weight-semibold{?tabs.archived.is_active} is-active{/tabs.archived.is_active}">
-            <a class="post-type-archive-exhibition__tab-link" href="{tabs.archived.link|url}">
-                {tabs.archived.text|html}
-                <div class="post-type-archive-exhibition__item-count-container">
-                    <p class="post-type-archive-exhibition__item-count">{results.archived_results_count|html}</p>
                 </div>
             </a>
         </div>
