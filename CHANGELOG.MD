@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Added Aulanäyttö-template
+- Remove Manual Event CPT changes
 - Added grey background-color to color options
 - Changed Archived exhibitions name to Digital exhibitions & add some checks if digital exhibitions are empty
 - Added link-field to single Digital exhibition
