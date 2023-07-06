@@ -9,13 +9,18 @@
  */
 class PageLobbyDisplay extends BaseModel {
 
+    /**
+     * Get font directory url.
+     *
+     * @return string
+     */
     public function font() {
         return get_stylesheet_directory_uri() . '/assets/fonts/BebasNeue-Regular.ttf';
     }
 
     /**
      * Get images.
-     * 
+     *
      * @return array
      */
     public function lobby_images() {
@@ -40,7 +45,7 @@ class PageLobbyDisplay extends BaseModel {
 
     /**
      * Get language versions.
-     * 
+     *
      * @return array
      */
     public function language_versions() {
@@ -69,11 +74,12 @@ class PageLobbyDisplay extends BaseModel {
                 [
                     'taxonomy' => 'exhibition-status',
                     'field'    => 'slug',
-                    'terms'    => array('arkisto', 'tulossa'),
-                    'operator' => 'NOT IN'
-                ]
-            ]
+                    'terms'    => [ 'arkisto', 'tulossa' ],
+                    'operator' => 'NOT IN',
+                ],
+            ],
         ];
+
         $query = new WP_Query($args);
         
         return array_map( function ( $post ) {

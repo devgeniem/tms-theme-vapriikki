@@ -296,7 +296,7 @@ class ArchiveExhibition extends BaseModel {
                 ),
                 'is_active' => $past_tab_active,
             ],
-            'digital'     => [
+            'digital' => [
                 'text'      => __( 'Digital exhibitions', 'tms-theme-vapriikki' ),
                 'link'      => add_query_arg(
                     self::DIGITAL_QUERY_VAR,
@@ -316,13 +316,13 @@ class ArchiveExhibition extends BaseModel {
     public function results() {
         global $wp_query;
 
-        $is_past_archive         = $this->is_past_archive();
-        $is_digital_exhibitions  = $this->is_digital_exhibitions();
-        $is_upcoming_archive     = $this->is_upcoming_archive();
-        $is_ongoing_archive      = ! $is_past_archive && ! $is_upcoming_archive && ! $is_digital_exhibitions;
-        $per_page                = ( $is_past_archive ) ? self::PAST_ITEMS_PER_PAGE : ( ( $is_upcoming_archive ) ? self::UPCOMING_ITEMS_PER_PAGE : self::ONGOING_ITEMS_PER_PAGE );
-        $current_exhibitions     = array_filter( $this->results->all, [ $this, 'is_current' ] );
-        $upcoming_exhibitions    = $this->results->upcoming;
+        $is_past_archive        = $this->is_past_archive();
+        $is_digital_exhibitions = $this->is_digital_exhibitions();
+        $is_upcoming_archive    = $this->is_upcoming_archive();
+        $is_ongoing_archive     = ! $is_past_archive && ! $is_upcoming_archive && ! $is_digital_exhibitions;
+        $per_page               = ( $is_past_archive ) ? self::PAST_ITEMS_PER_PAGE : ( ( $is_upcoming_archive ) ? self::UPCOMING_ITEMS_PER_PAGE : self::ONGOING_ITEMS_PER_PAGE );
+        $current_exhibitions    = array_filter( $this->results->all, [ $this, 'is_current' ] );
+        $upcoming_exhibitions   = $this->results->upcoming;
 
         $unfiltered_past_exhibitions = array_filter( $this->results->all, [ $this, 'is_past' ] );
         $past_exhibitions            = $wp_query->posts;
