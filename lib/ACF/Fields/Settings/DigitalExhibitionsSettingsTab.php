@@ -11,11 +11,11 @@ use Geniem\ACF\Field\Tab;
 use TMS\Theme\Base\Logger;
 
 /**
- * Class ArchivedExhibitionsSettingsTab
+ * Class DigitalExhibitionsSettingsTab
  *
  * @package TMS\Theme\Muumimuseo\ACF\Tab
  */
-class ArchivedExhibitionsSettingsTab extends Tab {
+class DigitalExhibitionsSettingsTab extends Tab {
 
     /**
      * Where should the tab switcher be located
@@ -30,8 +30,10 @@ class ArchivedExhibitionsSettingsTab extends Tab {
      * @var array
      */
     protected $strings = [
-        'tab'         => 'Arkistoidut näyttelyt',
-        'exhibitions' => [
+        'tab'               => 'Digitaaliset näyttelyt',
+        'page_button'       => 'Lisää sivu',
+        'exhibition_button' => 'Lisää näyttely',
+        'exhibitions'       => [
             'title'          => 'Näyttelyt',
             'instructions'   => '',
             'repeater_title' => 'Näyttelyiden sivu',
@@ -51,9 +53,9 @@ class ArchivedExhibitionsSettingsTab extends Tab {
                 'title'        => 'Loppuajankohta',
                 'instructions' => '',
             ],
-            'image'          => [
-                'title'        => 'Kuva',
-                'instructions' => 'Vakiokuvaa käytetään jos tämä kenttä jätetään tyhjäksi',
+            'link'           => [
+                'title'        => 'Linkki',
+                'instructions' => '',
             ],
         ],
     ];
@@ -83,42 +85,53 @@ class ArchivedExhibitionsSettingsTab extends Tab {
 
         try {
             $exhibition_repeater_field = ( new Field\Repeater( $strings['exhibitions']['title'] ) )
-                ->set_key( "${key}_archived_exhibitions" )
-                ->set_name( 'archived_exhibitions' )
+                ->set_key( "{$key}_digital_exhibitions" )
+                ->set_name( 'digital_exhibitions' )
+                ->set_button_label( $strings['page_button'] )
                 ->set_layout( 'block' )
                 ->set_instructions( $strings['exhibitions']['instructions'] );
 
             $exhibition_page_repeater = ( new Field\Repeater( $strings['exhibitions']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_page_repeater" )
-                ->set_name( 'archived_exhibition_page_repeater' )
+                ->set_key( "{$key}_digital_exhibition_page_repeater" )
+                ->set_name( 'digital_exhibition_page_repeater' )
+                ->set_button_label( $strings['exhibition_button'] )
                 ->set_layout( 'block' )
                 ->set_instructions( $strings['exhibitions']['instructions'] );
 
             $exhibition_page_name = ( new Field\Text( $strings['exhibitions']['single_page']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_page_name" )
-                ->set_name( 'archived_exhibition_page_name' )
+                ->set_key( "{$key}_digital_exhibition_page_name" )
+                ->set_name( 'digital_exhibition_page_name' )
+                ->set_required()
                 ->set_wrapper_width( 50 )
                 ->set_instructions( $strings['exhibitions']['single_page']['instructions'] );
 
             $exhibition_name = ( new Field\Text( $strings['exhibitions']['name']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_name" )
-                ->set_name( 'archived_exhibition_name' )
+                ->set_key( "{$key}_digital_exhibition_name" )
+                ->set_name( 'digital_exhibition_name' )
+                ->set_required()
                 ->set_instructions( $strings['exhibitions']['name']['instructions'] );
 
+            $exhibition_link = ( new Field\Link( $strings['exhibitions']['link']['title'] ) )
+                ->set_key( "{$key}_digital_exhibition_link" )
+                ->set_name( 'digital_exhibition_link' )
+                ->set_instructions( $strings['exhibitions']['link']['instructions'] );
+
             $exhibition_date_start = ( new Field\DatePicker( $strings['exhibitions']['date_start']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_date_start" )
-                ->set_name( 'archived_exhibition_date_start' )
+                ->set_key( "{$key}_digital_exhibition_date_start" )
+                ->set_name( 'digital_exhibition_date_start' )
+                ->set_return_format( 'd.m.Y' )
                 ->set_wrapper_width( 50 )
                 ->set_instructions( $strings['exhibitions']['date_start']['instructions'] );
 
             $exhibition_date_end = ( new Field\DatePicker( $strings['exhibitions']['date_end']['title'] ) )
-                ->set_key( "${key}_archived_exhibition_date_end" )
-                ->set_name( 'archived_exhibition_date_end' )
+                ->set_key( "{$key}_digital_exhibition_date_end" )
+                ->set_name( 'digital_exhibition_date_end' )
+                ->set_return_format( 'd.m.Y' )
                 ->set_wrapper_width( 50 )
                 ->set_instructions( $strings['exhibitions']['date_end']['instructions'] );
 
             $exhibition_repeater_field->add_fields( [ $exhibition_page_name, $exhibition_page_repeater ] );
-            $exhibition_page_repeater->add_fields( [ $exhibition_name, $exhibition_date_start, $exhibition_date_end ] );
+            $exhibition_page_repeater->add_fields( [ $exhibition_name, $exhibition_link, $exhibition_date_start, $exhibition_date_end ] );
 
             $this->add_fields( [
                 $exhibition_repeater_field,

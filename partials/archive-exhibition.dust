@@ -12,13 +12,9 @@
                     {>"shared/archive-exhibition-filters" /}
                 {/results.show_past}
 
-                {?results.show_archived}
-                    {>"shared/archive-archived-exhibition-filters" /}
-                {/results.show_archived}
-
-                {#results.archived_exhibition_pages}
-
-                {/results.archived_exhibition_pages}
+                {?results.show_digital}
+                    {>"shared/archive-digital-exhibition-filters" /}
+                {/results.show_digital}
 
                 <div class="mt-5 mt-8-desktop">
                     {?results.summary}
@@ -47,11 +43,11 @@
                                     {/results.posts}
                                 {/results.show_past}
 
-                                {?results.show_archived}
-                                    {#results.archived_exhibitions}
-                                        {>"{results.archived_exhibitions_partial}" exhibition=. /}
-                                    {/results.archived_exhibitions}
-                                {/results.show_archived}
+                                {?results.show_digital}
+                                    {#results.digital_exhibitions}
+                                        {>"{results.digital_exhibitions_partial}" exhibition=. /}
+                                    {/results.digital_exhibitions}
+                                {/results.show_digital}
                             </div>
                         </div>
                     </div>
