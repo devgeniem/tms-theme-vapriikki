@@ -105,8 +105,8 @@ class AlterComponents {
     /**
      * Add exhibitions layout to components
      *
-     * @param array $layouts Front page layouts.
-     * @param string $key    Field group key.
+     * @param array  $layouts Front page layouts.
+     * @param string $key     Field group key.
      *
      * @return mixed
      */

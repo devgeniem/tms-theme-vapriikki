@@ -80,8 +80,8 @@ class PageLobbyDisplay extends BaseModel {
             ],
         ];
 
-        $query = new WP_Query($args);
-        
+        $query = new WP_Query( $args );
+
         return array_map( function ( $post ) {
             $exhibition                = (object) get_fields( $post->ID );
             $exhibition->title         = get_the_title( $post->ID );
@@ -90,7 +90,7 @@ class PageLobbyDisplay extends BaseModel {
             $exhibition->upcoming_text = __( 'Upcoming', 'tms-theme-vapriikki' );
             $term_obj_list             = get_the_terms( $post->ID, 'exhibition-status' );
             $terms_string              = join( '', wp_list_pluck( $term_obj_list, 'slug' ) );
-            $exhibition->terms_string  = str_replace( ["tulossa", "arkisto", "vaihtuvat", "pysyvat"], "", $terms_string );
+            $exhibition->terms_string  = str_replace( [ 'tulossa', 'arkisto', 'vaihtuvat', 'pysyvat' ], '', $terms_string );
 
             return $exhibition;
 
