@@ -1,5 +1,5 @@
 {?results.digital_exhibition_pages}
-    <ul class="archive-archived-exhibition-filters is-unstyled is-flex">
+    <ul class="archive-digital-exhibition-filters is-unstyled is-flex">
         {#results.digital_exhibition_pages}
             <li class="ml-2 mr-2">
                 <a class="year-filter {current|attr}" href="{link|attr}">

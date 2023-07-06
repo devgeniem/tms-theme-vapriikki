@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.1] - 2023-07-06
+- Change favicon file
+
 ## [1.0.0] - 2023-07-06
 - Added Aulanäyttö-template
 - Remove Manual Event CPT changes, since now we have a plugin for Manual events
