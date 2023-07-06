@@ -670,7 +670,6 @@ class ArchiveExhibition extends BaseModel {
             $total_count['empty'] = false;
         }
 
-
         $total_count['number'] = $exhibition_count;
 
         return $total_count;
