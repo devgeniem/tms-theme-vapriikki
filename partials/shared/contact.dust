@@ -10,7 +10,7 @@
                     </div>
                 {/image}
 
-                <div class="column">
+                <div class="column is-8-desktop">
                     {?additional_info_top}
                         <div class="mb-3 keep-vertical-spacing is-size-5">
                             {additional_info_top|s}
@@ -41,7 +41,7 @@
                                         <div>{phone_text|s}</div>
                                         <div>
                                             <a href="tel:{phone_number|s}"
-                                               class="has-text-paragraph">
+                                               class="has-text-paragraph contact-phone">
                                                 {phone_number|s}
                                             </a>
                                         </div>
@@ -57,7 +57,7 @@
                                 {>"ui/icon" icon="email" class="icon--large is-accent" /}
                             </div>
 
-                            <a href="mailto:{email|s}" class="has-text-paragraph">
+                            <a href="mailto:{email|s}" class="has-text-paragraph contact-email">
                                 {email|s}
                             </a>
                         </div>

@@ -1,0 +1,16 @@
+.contacts {
+    .contact-email,
+    .contact-phone {
+        font-size: 13px;
+    }
+
+    &__icon-container {
+        width: 1.75rem;
+        min-width: 1.75rem;
+
+        .icon {
+            width: .75rem;
+            height: .75rem;
+        }
+    }
+}
