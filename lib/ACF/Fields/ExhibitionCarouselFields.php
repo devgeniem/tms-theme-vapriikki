@@ -55,7 +55,7 @@ class ExhibitionCarouselFields extends Field\Group {
                 'instructions' => 'Valitse vähintään 4 näyttelyä (muuten kuvakarusellia ei näytetä).',
                 'button'       => 'Lisää rivi',
             ],
-            'exhibition'       => [
+            'exhibition' => [
                 'label'        => 'Näyttely',
                 'instructions' => '',
             ],
@@ -98,7 +98,7 @@ class ExhibitionCarouselFields extends Field\Group {
             ->set_key( "{$key}_exhibition" )
             ->set_name( 'exhibition' )
             ->set_required()
-            ->set_post_types( ['exhibition'] )
+            ->set_post_types( [ 'exhibition' ] )
             ->set_instructions( $strings['exhibition']['instructions'] );
 
         $rows_field->add_fields( [

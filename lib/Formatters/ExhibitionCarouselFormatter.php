@@ -52,7 +52,7 @@ class ExhibitionCarouselFormatter implements Formatter {
                     $post_item->image_alt = get_post_meta( $post_item->image_id, '_wp_attachment_image_alt', true );
                 }
 
-                $post_item->post_url = get_permalink($post_item->ID);
+                $post_item->post_url = get_permalink( $post_item->ID );
             }
         }
 

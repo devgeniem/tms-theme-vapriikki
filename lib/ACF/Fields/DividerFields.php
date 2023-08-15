@@ -41,7 +41,7 @@ class DividerFields extends \Geniem\ACF\Field\Group {
      */
     protected function sub_fields() : array {
         $strings = [
-            'divider'       => [
+            'divider' => [
                 'label' => 'Erotin',
             ],
         ];
