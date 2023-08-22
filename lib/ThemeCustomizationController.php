@@ -6,6 +6,7 @@ use WP_post;
 use function add_filter;
 use TMS\Theme\Base\PostType\Page;
 use TMS\Theme\Base\PostType\Post;
+use TMS\Theme\Vapriikki\PostType\Exhibition;
 
 /**
  * Class ThemeCustomizationController
@@ -63,6 +64,7 @@ class ThemeCustomizationController implements \TMS\Theme\Base\Interfaces\Control
             'post_types' => [
                 Post::SLUG,
                 Page::SLUG,
+                Exhibition::SLUG,
             ],
         ];
 

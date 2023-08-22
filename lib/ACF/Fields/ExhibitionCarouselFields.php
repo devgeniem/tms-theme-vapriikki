@@ -51,8 +51,8 @@ class ExhibitionCarouselFields extends Field\Group {
                 'instructions' => '',
             ],
             'rows'        => [
-                'label'        => 'Kuvakaruselli',
-                'instructions' => 'Valitse vähintään 4 näyttelyä (muuten kuvakarusellia ei näytetä).',
+                'label'        => 'Näyttelykaruselli',
+                'instructions' => 'Valitse vähintään 4 näyttelyä (muuten karusellia ei näytetä).',
                 'button'       => 'Lisää rivi',
             ],
             'exhibition' => [
