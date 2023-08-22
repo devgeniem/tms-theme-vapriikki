@@ -1,22 +1,71 @@
-.layout-exhibition-carousel {
-    @include until($desktop) {
-        .slick-track {
-            height: max-content;
+.exhibition-carousel {
+    &__inner {
+        position: relative;
+    }
 
-            .slick-slide img {
-                height: auto !important;
+
+    &__items {
+        // Previous button
+        .slick-prev {
+            left: -2rem;
+    
+            @include from($desktop) {
+                left: -3rem;
+            }
+        }
+    
+        // Next button
+        .slick-next {
+            right: -2rem;
+    
+            @include from($desktop) {
+                right: -3rem;
             }
         }
     }
 
-    .slick-slide {
-        height: auto;
-        outline: 4px solid $color-white;
+    .slick-slider {
+        margin-bottom: 0;
 
-        .button-container {
-            background-color: $color-black;
-            padding: 1rem;
-            text-align: center;
+        .slick-track {
+            display: flex !important;
+
+            .slick-slide {
+                margin: .25rem !important;
+                height: inherit !important;
+                display: flex;
+
+                & > div {
+                    flex-grow: 1;
+                }
+
+                .exhibition-carousel__item {
+                    display: flex !important;
+                    flex-direction: column;
+                    height: 100%;
+
+                    .button-container {
+                        background-color: $color-black;
+                        padding: 1rem;
+                        text-align: center;
+                    }
+                }
+            }
         }
+    }
+
+    .slick-next {
+        right: 0.5rem;
+        transform: translateX(100%) translateY(-50%);
+    }
+
+    .slick-prev {
+        left: 0.5rem;
+        transform: translateX(-100%) translateY(-50%);
+    }
+
+    .slick-arrow {
+        width: 2.5rem;
+        height: 2.5rem;
     }
 }
