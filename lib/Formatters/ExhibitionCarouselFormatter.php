@@ -39,21 +39,23 @@ class ExhibitionCarouselFormatter implements Formatter {
      * @return array
      */
     public function format( array $data ) : array {
-        if ( ! empty( $data['rows'] ) ) {
-            foreach ( $data['rows'] as $repeater_row ) {
-                if ( empty( $repeater_row['exhibition'] ) ) {
-                    continue;
-                }
+        if ( empty( $data['rows'] ) ) {
+            return $data;
+        }
 
-                $post_item = $repeater_row['exhibition'];
-
-                if ( has_post_thumbnail( $post_item->ID ) ) {
-                    $post_item->image_id  = get_post_thumbnail_id( $post_item->ID, 'medium_large' );
-                    $post_item->image_alt = get_post_meta( $post_item->image_id, '_wp_attachment_image_alt', true );
-                }
-
-                $post_item->post_url = get_permalink( $post_item->ID );
+        foreach ( $data['rows'] as $repeater_row ) {
+            if ( empty( $repeater_row['exhibition'] ) ) {
+                continue;
             }
+
+            $post_item = $repeater_row['exhibition'];
+
+            if ( has_post_thumbnail( $post_item->ID ) ) {
+                $post_item->image_id  = get_post_thumbnail_id( $post_item->ID, 'medium_large' );
+                $post_item->image_alt = get_post_meta( $post_item->image_id, '_wp_attachment_image_alt', true );
+            }
+
+            $post_item->post_url = get_permalink( $post_item->ID );
         }
 
         return $data;

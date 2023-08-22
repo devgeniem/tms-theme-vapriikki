@@ -1,4 +1,4 @@
-<div class="column {column_class|s} has-text-small keep-vertical-spacing is-family-primary">
+<div class="column {column_class|attr} has-text-small keep-vertical-spacing is-family-primary">
     <div class="columns">
         <div class="column is-10-tablet is-offset-1-tablet is-12-desktop">
             <div class="columns is-multiline is-mobile is-4">
@@ -13,19 +13,19 @@
                 <div class="column is-8-desktop">
                     {?additional_info_top}
                         <div class="mb-3 keep-vertical-spacing is-size-5">
-                            {additional_info_top|s}
+                            {additional_info_top|kses}
                         </div>
                     {/additional_info_top}
 
                     {?title}
                         <div class="mb-3">
-                            {title|s}
+                            {title|html}
                         </div>
                     {/title}
 
                     {@isset key1=first_name key2=last_name method="OR" }
                         <div class="mb-3 is-size-6 has-text-weight-medium">
-                            {first_name|s} {last_name|s}
+                            {first_name|html} {last_name|html}
                         </div>
                     {/isset}
 
@@ -38,11 +38,11 @@
                                     </div>
 
                                     <div>
-                                        <div>{phone_text|s}</div>
+                                        <div>{phone_text|html}</div>
                                         <div>
-                                            <a href="tel:{phone_number|s}"
+                                            <a href="tel:{phone_number|html}"
                                                class="has-text-paragraph contact-phone">
-                                                {phone_number|s}
+                                                {phone_number|html}
                                             </a>
                                         </div>
                                     </div>
@@ -57,8 +57,8 @@
                                 {>"ui/icon" icon="email" class="icon--large is-accent" /}
                             </div>
 
-                            <a href="mailto:{email|s}" class="has-text-paragraph contact-email">
-                                {email|s}
+                            <a href="mailto:{email|attr}" class="has-text-paragraph contact-email">
+                                {email|html}
                             </a>
                         </div>
                     {/email}
@@ -70,7 +70,7 @@
                             </div>
 
                             <div>
-                                {office|s}
+                                {office|html}
                             </div>
                         </div>
                     {/office}
@@ -82,7 +82,7 @@
                             </div>
 
                             <div>
-                                {domain|s}
+                                {domain|html}
                             </div>
                         </div>
                     {/domain}
@@ -94,7 +94,7 @@
                             </div>
 
                             <div>
-                                {unit|s}
+                                {unit|html}
                             </div>
                         </div>
                     {/unit}
@@ -105,9 +105,9 @@
                                 {>"ui/icon" icon="location" class="icon--large is-accent" /}
                             </div>
 
-                            {visiting_address_street|s}
-                            {visiting_address_zip_code|s}
-                            {visiting_address_city|s}
+                            {visiting_address_street|html}
+                            {visiting_address_zip_code|html}
+                            {visiting_address_city|html}
                         </div>
                     {/isset}
 
@@ -117,15 +117,15 @@
                                 {>"ui/icon" icon="location" class="icon--large is-accent" /}
                             </div>
 
-                            {mail_address_street|s}
-                            {mail_address_zip_code|s}
-                            {mail_address_city|s}
+                            {mail_address_street|html}
+                            {mail_address_zip_code|html}
+                            {mail_address_city|html}
                         </div>
                     {/isset}
 
                     {?additional_info_bottom}
                         <div>
-                            {additional_info_bottom|s}
+                            {additional_info_bottom|kses}
                         </div>
                     {/additional_info_bottom}
                 </div>
