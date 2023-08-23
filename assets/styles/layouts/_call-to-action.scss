@@ -1,8 +1,6 @@
 .call-to-action {
 
     &__item {
-        border-bottom: 2rem solid $color-vapriikki-red;
-
         .layout-badge {
         
             @include from($desktop) {

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.2] - 2023-08-15
+- TMS-948: 
+    - Style fixes: change contacts from 3 columns to 2,
+    - Make video-block & component narrower
+    - Change button bg-color to red
+    - Add divider-block & component
+    - Add exhibition-carousel component
+
 ## [1.0.1] - 2023-07-06
 - Change favicon file
 
