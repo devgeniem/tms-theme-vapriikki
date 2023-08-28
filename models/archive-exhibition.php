@@ -349,7 +349,7 @@ class ArchiveExhibition extends BaseModel {
             'digital_exhibitions'         => $this->format_digital_exhibitions( $digital_exhibitions ),
             'summary'                     => $this->results_summary( count( $past_exhibitions ) ),
             'have_posts'                  => ! empty( $results ) || ! empty( $current_exhibitions ),
-            'partial'                     => $is_past_archive ? 'shared/exhibition-item-simple' : 'shared/exhibition-item',
+            'partial'                     => 'shared/exhibition-item',
             'digital_exhibitions_partial' => 'shared/exhibition-item-digital',
         ];
     }

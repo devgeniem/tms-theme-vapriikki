@@ -19,12 +19,12 @@
     &__image-badge {
         display: flex;
         position: absolute;
-        top: $theme-spacing-three-quarters;
-        left: $theme-spacing-three-quarters;
+        top: $theme-spacing-half;
+        left: $theme-spacing-half;
         align-items: center;
         justify-content: center;
-        min-width: 6rem;
-        min-height: 6rem;
+        width: 5rem;
+        height: 5rem;
         border-radius: 50%;
         background-color: $primary;
 
@@ -40,11 +40,6 @@
             border-bottom-color: transparent;
             border-left-color: transparent;
             transform: rotate(-135deg);
-        }
-
-        @include from($desktop) {
-            top: $theme-spacing;
-            left: $theme-spacing;
         }
 
         span {
