@@ -114,7 +114,7 @@ class DigitalExhibitionsSettingsTab extends Tab {
                 ->set_name( 'digital_exhibition_name' )
                 ->set_required()
                 ->set_instructions( $strings['exhibitions']['name']['instructions'] );
-            
+
             $exhibition_description = ( new Field\TextArea( $strings['exhibitions']['description']['title'] ) )
                 ->set_key( "{$key}_digital_exhibition_description" )
                 ->set_name( 'digital_exhibition_description' )
