@@ -635,10 +635,11 @@ class ArchiveExhibition extends BaseModel {
 
             if ( ( empty( $current_filter ) || $current_filter === str_replace( ' ', '', $exhibition_page_name ) ) && ! empty( $exhibition_repeater ) ) {
                 foreach ( $exhibition_repeater as $exhibition ) {
-                    $exhibition['post_title'] = $exhibition['digital_exhibition_name'];
-                    $exhibition['link']       = $exhibition['digital_exhibition_link'];
-                    $start_date               = $exhibition['digital_exhibition_date_start'];
-                    $dates                    = '';
+                    $exhibition['post_title']  = $exhibition['digital_exhibition_name'];
+                    $exhibition['description'] = $exhibition['digital_exhibition_description'];
+                    $exhibition['link']        = $exhibition['digital_exhibition_link'];
+                    $start_date                = $exhibition['digital_exhibition_date_start'];
+                    $dates                     = '';
 
                     if ( ! empty( $start_date ) ) {
                         $dates    = $start_date;

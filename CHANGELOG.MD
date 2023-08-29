@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Show exhibitions without start or end-date as ongoing exhibitions
     - Allow custom HTML-block and component only for super-admin users
     - Change exhibition-archive styles
+    - Add description-field to digital exhibitions
 
 ## [1.0.2] - 2023-08-15
 - TMS-948: 

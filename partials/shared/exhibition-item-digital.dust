@@ -11,6 +11,12 @@
             </a>
         {/exhibition.link}
 
+        {?exhibition.description}
+            <p>
+                {exhibition.description|html}
+            </p>
+        {/exhibition.description}
+
         {?exhibition.date}
             <div class="is-flex is-align-items-center">
                 {>"ui/icon" icon="date" class="icon--large entry__meta-icon" /}
