@@ -68,6 +68,10 @@ class ThemeCustomizationController implements \TMS\Theme\Base\Interfaces\Control
             ],
         ];
 
+        if ( \is_super_admin( \get_current_user_id() ) ) {
+            $blocks['core/html'] = [];
+        }
+
         return $blocks;
     }
 

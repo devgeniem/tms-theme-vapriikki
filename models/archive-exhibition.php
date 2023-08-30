@@ -325,7 +325,7 @@ class ArchiveExhibition extends BaseModel {
         $upcoming_exhibitions   = $this->results->upcoming;
 
         $unfiltered_past_exhibitions = array_filter( $this->results->all, [ $this, 'is_past' ] );
-        $past_exhibitions            = $wp_query->posts;
+        $past_exhibitions            = array_filter( $wp_query->posts, [ $this, 'is_past' ] );
         $this->results->past         = $past_exhibitions;
 
         $digital_exhibitions = Settings::get_setting( 'digital_exhibitions' ) ?: [];
@@ -344,12 +344,12 @@ class ArchiveExhibition extends BaseModel {
             'show_upcoming'               => $is_upcoming_archive,
             'current_exhibitions'         => $this->reorder_main_exhibitions( $this->format_posts( $current_exhibitions ) ),
             'upcoming_exhibitions'        => $this->reorder_main_exhibitions( $this->format_posts( $upcoming_exhibitions ) ),
-            'posts'                       => $this->reorder_main_exhibitions( $this->format_posts( $results ) ),
+            'posts'                       => $this->reorder_main_exhibitions( $this->format_posts( $past_exhibitions ) ),
             'digital_exhibition_pages'    => $this->digital_exhibitions_pages( $digital_exhibitions ),
             'digital_exhibitions'         => $this->format_digital_exhibitions( $digital_exhibitions ),
-            'summary'                     => $this->results_summary( count( $results ) ),
+            'summary'                     => $this->results_summary( count( $past_exhibitions ) ),
             'have_posts'                  => ! empty( $results ) || ! empty( $current_exhibitions ),
-            'partial'                     => $is_past_archive ? 'shared/exhibition-item-simple' : 'shared/exhibition-item',
+            'partial'                     => 'shared/exhibition-item',
             'digital_exhibitions_partial' => 'shared/exhibition-item-digital',
         ];
     }
@@ -372,6 +372,12 @@ class ArchiveExhibition extends BaseModel {
         }
 
         $selected_year = self::get_year_query_var();
+
+        $choices[] = [
+            'value'       => '',
+            'is_selected' => empty( $selected_year ) ? 'selected' : '',
+            'label'       => __( 'Filter by year', 'tms-theme-vapriikki' ),
+        ];
 
         foreach ( $items as $exhibition ) {
             $year = get_post_meta( $exhibition->ID, 'exhibition_year', true );
@@ -507,6 +513,10 @@ class ArchiveExhibition extends BaseModel {
         $today  = new DateTime( 'now' );
         $today->setTime( '0', '0' );
 
+        if ( ! get_post_meta( $item->ID, 'end_date', true ) ) {
+            return false;
+        }
+
         $end_date = DateTime::createFromFormat( $format, get_post_meta( $item->ID, 'end_date', true ) );
         $end_date->setTime( '23', '59' );
 
@@ -524,6 +534,10 @@ class ArchiveExhibition extends BaseModel {
         $format = 'Ymd';
         $today  = new DateTime( 'now' );
         $today->setTime( '0', '0' );
+
+        if ( ! get_post_meta( $item->ID, 'start_date', true ) && ! get_post_meta( $item->ID, 'end_date', true ) ) {
+            return true;
+        }
 
         $start_date = DateTime::createFromFormat( $format, get_post_meta( $item->ID, 'start_date', true ) );
         $start_date->setTime( '0', '0' );
@@ -544,6 +558,10 @@ class ArchiveExhibition extends BaseModel {
     protected function is_upcoming( $item ) {
         $format = 'Ymd';
         $today  = new DateTime( 'now' );
+
+        if ( ! get_post_meta( $item->ID, 'start_date', true ) ) {
+            return false;
+        }
 
         $start_date = DateTime::createFromFormat( $format, get_post_meta( $item->ID, 'start_date', true ) );
 
@@ -617,10 +635,11 @@ class ArchiveExhibition extends BaseModel {
 
             if ( ( empty( $current_filter ) || $current_filter === str_replace( ' ', '', $exhibition_page_name ) ) && ! empty( $exhibition_repeater ) ) {
                 foreach ( $exhibition_repeater as $exhibition ) {
-                    $exhibition['post_title'] = $exhibition['digital_exhibition_name'];
-                    $exhibition['link']       = $exhibition['digital_exhibition_link'];
-                    $start_date               = $exhibition['digital_exhibition_date_start'];
-                    $dates                    = '';
+                    $exhibition['post_title']  = $exhibition['digital_exhibition_name'];
+                    $exhibition['description'] = $exhibition['digital_exhibition_description'];
+                    $exhibition['link']        = $exhibition['digital_exhibition_link'];
+                    $start_date                = $exhibition['digital_exhibition_date_start'];
+                    $dates                     = '';
 
                     if ( ! empty( $start_date ) ) {
                         $dates    = $start_date;

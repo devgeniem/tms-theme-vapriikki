@@ -45,6 +45,10 @@ class DigitalExhibitionsSettingsTab extends Tab {
                 'title'        => 'Näyttelyn nimi',
                 'instructions' => '',
             ],
+            'description'    => [
+                'title'        => 'Kuvaus',
+                'instructions' => 'Näyttelyn lyhyt kuvausteksti',
+            ],
             'date_start'     => [
                 'title'        => 'Alkuajankohta',
                 'instructions' => '',
@@ -111,6 +115,11 @@ class DigitalExhibitionsSettingsTab extends Tab {
                 ->set_required()
                 ->set_instructions( $strings['exhibitions']['name']['instructions'] );
 
+            $exhibition_description = ( new Field\TextArea( $strings['exhibitions']['description']['title'] ) )
+                ->set_key( "{$key}_digital_exhibition_description" )
+                ->set_name( 'digital_exhibition_description' )
+                ->set_instructions( $strings['exhibitions']['description']['instructions'] );
+
             $exhibition_link = ( new Field\Link( $strings['exhibitions']['link']['title'] ) )
                 ->set_key( "{$key}_digital_exhibition_link" )
                 ->set_name( 'digital_exhibition_link' )
@@ -131,7 +140,7 @@ class DigitalExhibitionsSettingsTab extends Tab {
                 ->set_instructions( $strings['exhibitions']['date_end']['instructions'] );
 
             $exhibition_repeater_field->add_fields( [ $exhibition_page_name, $exhibition_page_repeater ] );
-            $exhibition_page_repeater->add_fields( [ $exhibition_name, $exhibition_link, $exhibition_date_start, $exhibition_date_end ] );
+            $exhibition_page_repeater->add_fields( [ $exhibition_name, $exhibition_description, $exhibition_link, $exhibition_date_start, $exhibition_date_end ] );
 
             $this->add_fields( [
                 $exhibition_repeater_field,
