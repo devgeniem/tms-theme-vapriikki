@@ -100,19 +100,19 @@ class ArchiveExhibition extends BaseModel {
                 'post_type'      => Exhibition::SLUG,
                 'posts_per_page' => self::ONGOING_ITEMS_PER_PAGE,
                 'post_status'    => 'publish',
-                'meta_query' => array( // WordPress has all the results, now, return only the events after today's date
+                'meta_query'     => [
                     'relation' => 'OR',
-                    array(
-                        'key' => 'start_date',
-                        'value' => date("Y-m-d"),
+                    [
+                        'key'     => 'start_date',
+                        'value'   => date("Y-m-d"),
                         'compare' => '<=',
-                        'type' => 'DATE',
-                    ),
-                    array(
-                        'key' => 'start_date',
+                        'type'    => 'DATE',
+                    ],
+                    [
+                        'key'   => 'start_date',
                         'value' => '',
-                    ),
-                ),
+                    ],
+                ],
                 'orderby'        => [ 'start_date' => 'DESC', 'title' => 'ASC' ],
                 'meta_key'       => 'start_date',
             ];
