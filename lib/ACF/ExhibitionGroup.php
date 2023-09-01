@@ -100,7 +100,7 @@ class ExhibitionGroup {
             'tab'                => 'Lisätiedot',
             'main_exhibition'    => [
                 'title'        => 'Päänäyttely',
-                'instructions' => 'Valittu näyttely näytetään listauksessa samaan aikaan meneillään olevien näyttelyiden kanssa ylimpänä. Näyttelyllä on oltava alku- ja loppupäivämäärä asetettuna.',
+                'instructions' => 'Valittu näyttely näytetään listauksessa ylimpänä',
             ],
             'start_date'         => [
                 'title'        => 'Alkupvm',

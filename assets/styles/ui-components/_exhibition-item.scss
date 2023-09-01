@@ -49,6 +49,7 @@
 
     &__badge-text {
         display: inline-block;
+        font-size: 12px !important;
         padding: $theme-spacing-half;
         font-weight: $weight-light;
     }

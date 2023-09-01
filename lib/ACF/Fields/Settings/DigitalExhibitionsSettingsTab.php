@@ -120,6 +120,11 @@ class DigitalExhibitionsSettingsTab extends Tab {
                 ->set_name( 'digital_exhibition_description' )
                 ->set_instructions( $strings['exhibitions']['description']['instructions'] );
 
+            $exhibition_description = ( new Field\TextArea( $strings['exhibitions']['description']['title'] ) )
+                ->set_key( "{$key}_digital_exhibition_description" )
+                ->set_name( 'digital_exhibition_description' )
+                ->set_instructions( $strings['exhibitions']['description']['instructions'] );
+
             $exhibition_link = ( new Field\Link( $strings['exhibitions']['link']['title'] ) )
                 ->set_key( "{$key}_digital_exhibition_link" )
                 ->set_name( 'digital_exhibition_link' )
