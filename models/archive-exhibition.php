@@ -104,7 +104,7 @@ class ArchiveExhibition extends BaseModel {
                     'relation' => 'OR',
                     [
                         'key'     => 'start_date',
-                        'value'   => date("Y-m-d"),
+                        'value'   => date( 'Y-m-d' ),
                         'compare' => '<=',
                         'type'    => 'DATE',
                     ],
