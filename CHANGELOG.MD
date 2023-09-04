@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.4] - 2023-09-04
+
 - TMS-972:
     - Change main-exhibitions to show in the start of exhibition archive listing
     - Change ongoing exhibition order to descending in exhibition archive
+    - Fix pagination for past exhibitions in exhibition-archive
 
 ## [1.0.3] - 2023-08-28
 
