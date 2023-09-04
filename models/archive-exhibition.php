@@ -42,7 +42,7 @@ class ArchiveExhibition extends BaseModel {
     /**
      * Number of past items to show per page.
      */
-    const PAST_ITEMS_PER_PAGE = '9';
+    const PAST_ITEMS_PER_PAGE = '8';
 
     /**
      * Number of ongoing items to show per page.
@@ -69,6 +69,13 @@ class ArchiveExhibition extends BaseModel {
     protected object $results;
 
     /**
+     * Ongoing results data.
+     *
+     * @var object
+     */
+    protected object $ongoing_results;
+
+    /**
      * ArchiveExhibition constructor.
      *
      * @param array $args   Arguments.
@@ -78,7 +85,8 @@ class ArchiveExhibition extends BaseModel {
         parent::__construct( $args, $parent );
 
         if ( is_post_type_archive( Exhibition::SLUG ) ) {
-            $this->results = new stdClass();
+            $this->results         = new stdClass();
+            $this->ongoing_results = new stdClass();
 
             $args = [
                 'post_type'      => Exhibition::SLUG,
@@ -88,10 +96,33 @@ class ArchiveExhibition extends BaseModel {
                 'meta_key'       => 'start_date',
             ];
 
-            $query = new WP_Query( $args );
+            $ongoing_args = [
+                'post_type'      => Exhibition::SLUG,
+                'posts_per_page' => self::ONGOING_ITEMS_PER_PAGE,
+                'post_status'    => 'publish',
+                'meta_query'     => [
+                    'relation' => 'OR',
+                    [
+                        'key'     => 'start_date',
+                        'value'   => date( 'Y-m-d' ),
+                        'compare' => '<=',
+                        'type'    => 'DATE',
+                    ],
+                    [
+                        'key'   => 'start_date',
+                        'value' => '',
+                    ],
+                ],
+                'orderby'        => [ 'start_date' => 'DESC', 'title' => 'ASC' ],
+                'meta_key'       => 'start_date',
+            ];
 
-            $this->results->all      = $query->have_posts() ? $query->posts : [];
-            $this->results->upcoming = $query->have_posts()
+            $query         = new WP_Query( $args );
+            $ongoing_query = new WP_Query( $ongoing_args );
+
+            $this->ongoing_results->all = $ongoing_query->have_posts() ? $ongoing_query->posts : [];
+            $this->results->all         = $query->have_posts() ? $query->posts : [];
+            $this->results->upcoming    = $query->have_posts()
                 ? array_filter( $query->posts, [ $this, 'is_upcoming' ] )
                 : [];
         }
@@ -321,7 +352,7 @@ class ArchiveExhibition extends BaseModel {
         $is_upcoming_archive    = $this->is_upcoming_archive();
         $is_ongoing_archive     = ! $is_past_archive && ! $is_upcoming_archive && ! $is_digital_exhibitions;
         $per_page               = ( $is_past_archive ) ? self::PAST_ITEMS_PER_PAGE : ( ( $is_upcoming_archive ) ? self::UPCOMING_ITEMS_PER_PAGE : self::ONGOING_ITEMS_PER_PAGE );
-        $current_exhibitions    = array_filter( $this->results->all, [ $this, 'is_current' ] );
+        $current_exhibitions    = array_filter( $this->ongoing_results->all, [ $this, 'is_current' ] );
         $upcoming_exhibitions   = $this->results->upcoming;
 
         $unfiltered_past_exhibitions = array_filter( $this->results->all, [ $this, 'is_past' ] );
@@ -330,7 +361,7 @@ class ArchiveExhibition extends BaseModel {
 
         $digital_exhibitions = Settings::get_setting( 'digital_exhibitions' ) ?: [];
 
-        $results = $is_past_archive ? $past_exhibitions : $upcoming_exhibitions;
+        $results = $is_past_archive ? $unfiltered_past_exhibitions : $upcoming_exhibitions;
         $this->set_pagination_data( count( $results ), $per_page );
 
         return [
@@ -435,8 +466,8 @@ class ArchiveExhibition extends BaseModel {
      */
     protected function reorder_main_exhibitions( $items ) {
 
-        // Return original $items array if search or year filter is used
-        if ( self::get_search_query_var() || self::get_year_query_var() ) {
+        // Return original $items array if search or year filter is used, or if page is past archive
+        if ( self::get_search_query_var() || self::get_year_query_var() || self::is_past_archive() ) {
             return $items;
         }
 
@@ -463,34 +494,20 @@ class ArchiveExhibition extends BaseModel {
             }
         }
 
-        $items  = array_values( $items ); // reset array keys to start from 0 again
-        $length = count( $items );
+        // reset array keys to start from 0 again
+        $items  = array_values( $items );
 
-        // Loop through exhibitions and compare main exhibition dates with other exhibitions
+        // Loop through main exhibitions
         if ( isset( $main_exhibitions ) ) {
-            // Loop main exhibitions
-            foreach ( $main_exhibitions as $main ) {
-                // Loop normal exhibitions
-                for ( $i = 0; $i <= $length; $i++ ) {
-                    // Check if item dates exists
-                    if ( ! empty( $items[ $i ]->dates ) ) {
-                        // Compare main exhibitions dates with each normal exhibitions dates and get the first matches position
-                        if ( array_intersect( $items[ $i ]->dates, $main->dates ) && $items[ $i ]->ID !== $main->ID
-                        && ( empty( $items[ $i ]->main_exhibition ) || $items[ $i ]->main_exhibition === '0' ) ) {
-                            // Set the position as a variable for the main exhibition and break the loop
-                            $main->position = $i;
-                            // Break the loop when a match is found
-                            break;
-                        }
-                        else {
-                            // Set original position for the main exhibition if there are no matches
-                            $main->position = $main->original_position;
-                        }
-                    }
-                }
-            }
+            // Sort main exhibitions by their start_date
+            usort( $main_exhibitions, function( $a, $b ) {
+                return strcmp( $a->start_date, $b->start_date );
+            } );
 
-            unset( $main );
+            // Set main exhibition positions
+            foreach ( $main_exhibitions as $key => $main ) {
+                $main->position = $key;
+            }
 
             // Set each main exhibition back to the $items array to their new positions
             foreach ( $main_exhibitions as $main ) {
