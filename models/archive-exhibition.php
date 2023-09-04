@@ -42,7 +42,7 @@ class ArchiveExhibition extends BaseModel {
     /**
      * Number of past items to show per page.
      */
-    const PAST_ITEMS_PER_PAGE = '-1';
+    const PAST_ITEMS_PER_PAGE = '8';
 
     /**
      * Number of ongoing items to show per page.
@@ -361,7 +361,7 @@ class ArchiveExhibition extends BaseModel {
 
         $digital_exhibitions = Settings::get_setting( 'digital_exhibitions' ) ?: [];
 
-        $results = $is_past_archive ? $past_exhibitions : $upcoming_exhibitions;
+        $results = $is_past_archive ? $unfiltered_past_exhibitions : $upcoming_exhibitions;
         $this->set_pagination_data( count( $results ), $per_page );
 
         return [
