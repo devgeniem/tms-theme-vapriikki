@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.5] - 2023-09-05
+
+- TMS-972: Increase exhibition archive querys posts_per_page value to prevent exhibitions not showing
+
 ## [1.0.4] - 2023-09-04
 
 - TMS-972:

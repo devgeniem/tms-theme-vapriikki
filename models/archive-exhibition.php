@@ -47,12 +47,12 @@ class ArchiveExhibition extends BaseModel {
     /**
      * Number of ongoing items to show per page.
      */
-    const ONGOING_ITEMS_PER_PAGE = '100';
+    const ONGOING_ITEMS_PER_PAGE = '600';
 
     /**
      * Number of upcoming items to show per page.
      */
-    const UPCOMING_ITEMS_PER_PAGE = '100';
+    const UPCOMING_ITEMS_PER_PAGE = '600';
 
     /**
      * Pagination data.
