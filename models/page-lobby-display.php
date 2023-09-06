@@ -65,12 +65,16 @@ class PageLobbyDisplay extends BaseModel {
      * @return array|array[]|false
      */
     public function lobby_exhibitions() {
+        /**
+         * Redipress is disabled in this query for tax_query to exclude terms properly
+         */
         $args = [
-            'post_type'      => 'exhibition',
-            'posts_per_page' => -1,
-            'orderby'        => 'menu_order',
-            'order'          => 'ASC',
-            'tax_query'      => [
+            'post_type'         => 'exhibition',
+            'posts_per_page'    => -1,
+            'orderby'           => 'menu_order',
+            'order'             => 'ASC',
+            'disable_redipress' => true,
+            'tax_query'         => [
                 [
                     'taxonomy' => 'exhibition-status',
                     'field'    => 'slug',

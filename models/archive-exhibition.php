@@ -357,12 +357,18 @@ class ArchiveExhibition extends BaseModel {
 
         $unfiltered_past_exhibitions = array_filter( $this->results->all, [ $this, 'is_past' ] );
         $past_exhibitions            = array_filter( $wp_query->posts, [ $this, 'is_past' ] );
-        $this->results->past         = $past_exhibitions;
+        $this->results->past         = $unfiltered_past_exhibitions;
 
         $digital_exhibitions = Settings::get_setting( 'digital_exhibitions' ) ?: [];
 
         $results = $is_past_archive ? $unfiltered_past_exhibitions : $upcoming_exhibitions;
         $this->set_pagination_data( count( $results ), $per_page );
+
+        // Use past exhibitions pagination data when archive search is used
+        $found_posts = $wp_query->found_posts;
+        if ( self::get_search_query_var() || self::get_year_query_var() ) {
+            $this->set_pagination_data( $found_posts, $per_page );
+        }
 
         return [
             'result_count'                => count( $current_exhibitions ),
@@ -378,7 +384,7 @@ class ArchiveExhibition extends BaseModel {
             'posts'                       => $this->reorder_main_exhibitions( $this->format_posts( $past_exhibitions ) ),
             'digital_exhibition_pages'    => $this->digital_exhibitions_pages( $digital_exhibitions ),
             'digital_exhibitions'         => $this->format_digital_exhibitions( $digital_exhibitions ),
-            'summary'                     => $this->results_summary( count( $past_exhibitions ) ),
+            'summary'                     => $this->results_summary( $found_posts ),
             'have_posts'                  => ! empty( $results ) || ! empty( $current_exhibitions ),
             'partial'                     => 'shared/exhibition-item',
             'digital_exhibitions_partial' => 'shared/exhibition-item-digital',
