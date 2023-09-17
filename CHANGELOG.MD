@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.6] - 2023-09-18
+- TMS-948: Fix form text color
+
 ## [1.0.3] - 2023-08-28
 
 - TMS-948: 
