@@ -10,6 +10,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.6] - 2023-09-18
 - TMS-948: Fix form text color
 
+## [1.0.5] - 2023-09-05
+
+- TMS-972: 
+    - Increase exhibition archive querys posts_per_page value to prevent exhibitions not showing
+    - Fix lobby-display exhibition query
+    - Fix exhibition archive year-filter dropdown
+
+## [1.0.4] - 2023-09-04
+
+- TMS-972:
+    - Change main-exhibitions to show in the start of exhibition archive listing
+    - Change ongoing exhibition order to descending in exhibition archive
+    - Fix pagination for past exhibitions in exhibition-archive
+
 ## [1.0.3] - 2023-08-28
 
 - TMS-948: 
