@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.9] - 2023-10-09
+
+- TMS-978: Remove manual-event styles
+
 ## [1.0.8] - 2023-10-04
 
 - TMS-978: Reduce single manual-event description line-height & margin
