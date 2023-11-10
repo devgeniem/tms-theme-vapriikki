@@ -4,7 +4,7 @@
         <div class="columns is-multiline">
 
             {?title}
-                <h3 id="{carousel_id}-title"
+                <h3 id="{carousel_id|attr}-title"
                     class="exhibition-carousel__title column is-block is-half is-offset-one-quarter has-text-centered mt-0 mb-0 {carousel_title_class|attr} {txt_color_class|attr}">
                     {title|html}
                 </h3>
@@ -19,13 +19,13 @@
             <div class="exhibition-carousel__inner column is-full">
                 <button class="button button--icon is-primary is-rounded slick-prev slick-arrow" type="button">
                     {>"ui/icon" icon="chevron-left" /}
-                    <span class="is-sr-only">{Strings.s.gallery.previous|html}</span>
+                    <span class="is-sr-only">{translations.previous|html}</span>
                 </button>
 
                 <div class="exhibition-carousel__items exhibition-carousel__items--primary"
-                     id="{carousel_id}">
+                     id="{carousel_id|attr}">
                     {#rows}
-                        <div class="exhibition-carousel__item" id="{id}">
+                        <div class="exhibition-carousel__item" id="{id|attr}">
                             {@image id=exhibition.image_id alt=exhibition.image_alt title=exhibition.image_alt size="medium_vertical" class="objectfit-image" loading="" /}
                             <div class="button-container">
                                 <a href="{exhibition.post_url|url}" class="button">{exhibition.post_title|html}</a>
@@ -36,7 +36,7 @@
 
                 <button class="button button--icon is-primary is-rounded slick-next slick-arrow" type="button">
                     {>"ui/icon" icon="chevron-right" /}
-                    <span class="is-sr-only">{Strings.s.gallery.next|html}</span>
+                    <span class="is-sr-only">{translations.next|html}</span>
                 </button>
             </div>
         </div>
