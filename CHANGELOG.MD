@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.3] - 2024-03-26
+
 - TMS-1013: Add event weekly entry dates to event partial
 
 ## [1.3.1] - 2024-02-01
