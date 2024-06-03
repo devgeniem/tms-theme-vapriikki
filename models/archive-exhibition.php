@@ -609,18 +609,19 @@ class ArchiveExhibition extends BaseModel {
         }
 
         return array_map( function ( $item ) {
-            $item->permalink   = get_the_permalink( $item->ID );
-            $additional_fields = get_fields( $item->ID );
-            $item->post_title  = $additional_fields['title'] ?: $item->post_title;
-            $item->fields      = $additional_fields;
-            $date              = SingleExhibition::get_date( $item->ID );
+            $item->permalink    = \get_the_permalink( $item->ID );
+            $additional_fields  = \get_fields( $item->ID );
+            $item->post_title   = $additional_fields['title'] ?: $item->post_title;
+            $item->link_sr_text = __( 'Go to exhibition', 'tms-theme-vapriikki' ) . ' ' . $item->post_title;
+            $item->fields       = $additional_fields;
+            $date               = SingleExhibition::get_date( $item->ID );
 
             if ( ! empty( $date ) ) {
                 $item->date = $date;
             }
 
-            if ( has_post_thumbnail( $item->ID ) ) {
-                $item->image = get_post_thumbnail_id( $item->ID );
+            if ( \has_post_thumbnail( $item->ID ) ) {
+                $item->image = \get_post_thumbnail_id( $item->ID );
             }
 
             // Get single dates between start_date and end_date for the exhibitions

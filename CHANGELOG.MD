@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- TMS-1047: Add image-links sr-text to exhibition archive
+
 ## [1.3.5] - 2024-05-20
 
 - TMS-1028: Add social-media link column to footer
