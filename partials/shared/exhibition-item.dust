@@ -1,6 +1,9 @@
 <div class="exhibition-item column is-6 is-4-desktop is-3-widescreen mb-3">
     {?exhibition.image}
         <a href="{exhibition.permalink|url}" tabindex="-1">
+            <span class="is-sr-only">
+                {exhibition.link_sr_text|html}
+            </span>
             <div class="exhibition-item__image image mb-5">
                 {@image id=exhibition.image size="large" class="objectfit-image" /}
 
