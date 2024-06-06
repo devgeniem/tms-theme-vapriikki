@@ -5,7 +5,7 @@ $button-secondary-border-color: $button-primary-border-color;
 
 
 .button {
-    font-size: 1.15rem !important;
+    font-size: 1rem !important;
     font-weight: 400 !important;
     letter-spacing: .06rem !important;
     text-transform: uppercase;
@@ -13,7 +13,7 @@ $button-secondary-border-color: $button-primary-border-color;
     border-color: transparent !important;
     // box-shadow: 1px 1px 8px 0 bulmaLighten($primary-invert, 50);
     color: $primary-invert;
-    background-color: $primary;
+    background-color: $color-vapriikki-red;
 
     &:hover,
     &.is-hovered,

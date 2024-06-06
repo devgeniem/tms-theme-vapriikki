@@ -6,7 +6,7 @@ use Closure;
 use Geniem\ACF\Field;
 use Geniem\ACF\Exception;
 use TMS\Theme\Base\Logger;
-use TMS\Theme\Vapriikki\ACF\Fields\Settings\ArchivedExhibitionsSettingsTab;
+use TMS\Theme\Vapriikki\ACF\Fields\Settings\DigitalExhibitionsSettingsTab;
 
 /**
  * AlterSettingsGroup
@@ -58,7 +58,7 @@ class AlterSettingsGroup {
      */
     protected function register_theme_tabs( array $fields, string $key ) : array {
         try {
-            $fields[] = new ArchivedExhibitionsSettingsTab( '', $key );
+            $fields[] = new DigitalExhibitionsSettingsTab( '', $key );
         }
         catch ( Exception $e ) {
             ( new Logger() )->error( $e->getMessage(), $e->getTraceAsString() );

@@ -111,6 +111,7 @@ class ColorOptions {
                 ->set_choices( [
                     'primary-invert' => 'Valkoinen',
                     'primary'        => 'Musta',
+                    'vapriikki-grey' => 'Harmaa',
                 ] )
                 ->set_default_value( 'primary-invert' )
                 ->set_wrapper_width( 50 )

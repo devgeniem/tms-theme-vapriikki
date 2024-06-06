@@ -19,18 +19,27 @@
     &__image-badge {
         display: flex;
         position: absolute;
-        top: $theme-spacing-three-quarters;
-        left: $theme-spacing-three-quarters;
+        top: $theme-spacing-half;
+        left: $theme-spacing-half;
         align-items: center;
         justify-content: center;
-        min-width: 6rem;
-        min-height: 6rem;
+        width: 5rem;
+        height: 5rem;
         border-radius: 50%;
         background-color: $primary;
 
-        @include from($desktop) {
-            top: $theme-spacing;
-            left: $theme-spacing;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: .5rem solid $color-vapriikki-red;
+            border-radius: 50%;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            transform: rotate(-135deg);
         }
 
         span {
@@ -40,7 +49,22 @@
 
     &__badge-text {
         display: inline-block;
+        font-size: 12px !important;
         padding: $theme-spacing-half;
-        font-weight: $weight-bold;
+        font-weight: $weight-light;
+    }
+}
+
+.layout-exhibitions {
+    .exhibition-item__image-badge {
+        width: 4rem;
+        height: 4rem;
+        min-width: auto;
+        min-height: auto;
+        font-size: 1rem;
+
+        &::after {
+            border-width: .25rem;
+        }
     }
 }

@@ -12,13 +12,13 @@
                     <div class="is-center p-8 pr-8-tablet pl-8-tablet pr-2 pl-2 has-text-centered">
                         {?title}
                             <h1 class="h1 mt-0 mr-auto mb-5 ml-auto no-hyphens has-text-secondary-invert">
-                                {title|s}
+                                {title|html}
                             </h1>
                         {/title}
 
                         {?description}
-                            <div class="mb-6 has-text-secondary-invert keep-vertical-spacing">
-                                {description|s}
+                            <div class="h3 mb-6 has-text-secondary-invert keep-vertical-spacing">
+                                {description|kses}
                             </div>
                         {/description}
 
@@ -32,7 +32,7 @@
             </div>
 
             {?before_main_content}
-                {before_main_content|s}
+                {before_main_content|kses}
             {/before_main_content}
 
             {?columns}
@@ -41,10 +41,10 @@
                         <div class="column is-6 is-4-desktop has-text-centered">
                             <div class="is-flex is-flex-direction-column has-height-100 p-6">
                                 <p class="h3 mt-0 mb-3">
-                                    {title|s}
+                                    {title|html}
                                 </p>
 
-                                <p class="mt-0 mb-0 has-text-large">{text|s}</p>
+                                <p class="mt-0 mb-0 has-text-large">{text|kses}</p>
 
                                 {?logo}
                                     <div class="image-container">
@@ -64,7 +64,7 @@
             {/columns}
 
             {?after_main_content}
-                {after_main_content|s}
+                {after_main_content|kses}
             {/after_main_content}
         </div>
     </div>
