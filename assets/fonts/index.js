@@ -5,10 +5,14 @@
 import './fonts';
 
 // Font families
-import './Adelon-Bold.ttf';
-import './Adelon-Medium.ttf';
-import './Adelon-Regular.ttf';
-import './RobotoSlab-Regular.ttf';
-import './RobotoSlab-Medium.ttf';
-import './RobotoSlab-SemiBold.ttf';
-import './RobotoSlab-Bold.ttf';
+import './Inter-Bold.ttf';
+import './Inter-SemiBold.ttf';
+import './Inter-Medium.ttf';
+import './Inter-Regular.ttf';
+import './Roboto-Regular.ttf';
+import './Roboto-Medium.ttf';
+import './Roboto-Bold.ttf';
+import './Poppins-Regular.ttf';
+import './Poppins-Medium.ttf';
+import './Poppins-SemiBold.ttf';
+import './Poppins-Bold.ttf';

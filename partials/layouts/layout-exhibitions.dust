@@ -1,0 +1,3 @@
+<section class="section layout-exhibitions">
+    {>"layouts/layout-exhibitions-inner" /}
+</section>

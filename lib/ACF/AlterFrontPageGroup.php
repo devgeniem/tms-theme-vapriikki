@@ -5,6 +5,7 @@ namespace TMS\Theme\Vapriikki\ACF;
 use Geniem\ACF\Field;
 use TMS\Theme\Base\ACF\Layouts\HeroLayout as BaseThemeHeroLayout;
 use TMS\Theme\Vapriikki\ACF\Layouts\HeroLayout;
+use TMS\Theme\Vapriikki\ACF\Layouts\ExhibitionsLayout;
 
 /**
  * Class AlterPageFrontPageGroup
@@ -25,7 +26,7 @@ class AlterPageFrontPageGroup {
     }
 
     /**
-     * Replace base theme hero with Muumimuseo hero.
+     * Replace base theme hero with Vapriikki hero.
      *
      * @param array $layouts Front page layouts.
      *

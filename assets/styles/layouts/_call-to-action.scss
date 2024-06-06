@@ -1,7 +1,6 @@
 .call-to-action {
 
     &__item {
-
         .layout-badge {
         
             @include from($desktop) {

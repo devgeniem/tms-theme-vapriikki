@@ -1,0 +1,2 @@
+<section {?anchor}id="{anchor|attr}" {/anchor}class="layout-divider">
+</section>
