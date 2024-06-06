@@ -612,7 +612,7 @@ class ArchiveExhibition extends BaseModel {
             $item->permalink    = \get_the_permalink( $item->ID );
             $additional_fields  = \get_fields( $item->ID );
             $item->post_title   = $additional_fields['title'] ?: $item->post_title;
-            $item->link_sr_text = __( 'Go to exhibition', 'tms-theme-vapriikki' ) . ' ' . $item->post_title;
+            $item->link_sr_text = \__( 'Go to exhibition', 'tms-theme-vapriikki' ) . ' ' . $item->post_title;
             $item->fields       = $additional_fields;
             $date               = SingleExhibition::get_date( $item->ID );
 
