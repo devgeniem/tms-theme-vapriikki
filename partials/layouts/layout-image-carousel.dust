@@ -34,7 +34,7 @@
                                 aria-controls="{carousel_id|attr}-modal"
                                 aria-expanded="false"
                                 aria-haspopup="true"
-                                aria-label="{translations.open}"
+                                aria-label="{translations.open|attr}"
                             >
                                 {@image id=image.id alt=image.alt title=image.alt size="medium_vertical" class="objectfit-image" width="{image.sizes.medium_vertical-width}" loading="" /}
                             </button>
@@ -64,7 +64,7 @@
             {! Slider inside the modal !}
             <div class="image-carousel__items image-carousel__items--modal column is-full" id="{carousel_id|attr}-modal-carousel" data-slider-for="{carousel_id|attr}">
                 {#rows}
-                    <div class="image-carousel__item" id="{id}-modal">
+                    <div class="image-carousel__item" id="{id|attr}-modal">
                         <div class="img-wrapper">
                         {@image id=image.id alt=image.alt title=image.alt size="fullhd" width="{image.sizes.fullhd-width}" height="{image.sizes.fullhd-height}" loading="" /}
                         </div>

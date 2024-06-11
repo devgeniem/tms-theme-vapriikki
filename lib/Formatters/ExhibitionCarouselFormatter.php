@@ -58,6 +58,8 @@ class ExhibitionCarouselFormatter implements Formatter {
             $post_item->post_url = get_permalink( $post_item->ID );
         }
 
+        $data['translations'] = ( new \Strings() )->s()['gallery'] ?? [];
+
         return $data;
     }
 }
