@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- TMS-1054: Remove hero overlay-toggle from single page editor
+
+## [1.3.6] - 2024-06-12
+
 - TMS-1048: Fix screen reader texts to show on exhibition-carousel
 - TMS-1047: Add image-links sr-text to exhibition archive
 
