@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - TMS-1062: Increase menu-dropdown button size
+- TMS-1070: Change lobby-display images, allow single exhibition to be in two spaces
+
+## [1.3.9] - 2024-09-25
+
 - TMS-1067: Show price-info for event in listing if it's free
 
 ## [1.3.8] - 2024-08-21
