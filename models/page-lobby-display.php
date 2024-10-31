@@ -15,7 +15,7 @@ class PageLobbyDisplay extends BaseModel {
      * @return string
      */
     public function font() {
-        return get_stylesheet_directory_uri() . '/assets/fonts/BebasNeue-Regular.ttf';
+        return \get_stylesheet_directory_uri() . '/assets/fonts/BebasNeue-Regular.ttf';
     }
 
     /**
@@ -25,19 +25,19 @@ class PageLobbyDisplay extends BaseModel {
      */
     public function lobby_images() {
         $images = [
-            'map_3rd_floor'   => get_stylesheet_directory_uri() . '/assets/images/aula/map_3rd_floor.png',
-            'third'           => get_stylesheet_directory_uri() . '/assets/images/aula/3rd.png',
-            'map_2nd_floor'   => get_stylesheet_directory_uri() . '/assets/images/aula/map_2nd_floor.png',
-            'second'          => get_stylesheet_directory_uri() . '/assets/images/aula/2nd.png',
-            'map_groundfloor' => get_stylesheet_directory_uri() . '/assets/images/aula/map_groundfloor.png',
-            'first'           => get_stylesheet_directory_uri() . '/assets/images/aula/1st.png',
-            'map_basement'    => get_stylesheet_directory_uri() . '/assets/images/aula/map_basement.png',
-            'basement'        => get_stylesheet_directory_uri() . '/assets/images/aula/basement.png',
-            'hallway'         => get_stylesheet_directory_uri() . '/assets/images/aula/hallway.png',
-            'food'            => get_stylesheet_directory_uri() . '/assets/images/aula/food.png',
-            'shop'            => get_stylesheet_directory_uri() . '/assets/images/aula/shop.png',
-            'loc_white'       => get_stylesheet_directory_uri() . '/assets/images/aula/loc_white.png',
-            'press'           => get_stylesheet_directory_uri() . '/assets/images/aula/press.png',
+            'map_3rd_floor'   => \get_stylesheet_directory_uri() . '/assets/images/aula/map_3rd_floor.png',
+            'third'           => \get_stylesheet_directory_uri() . '/assets/images/aula/3rd.png',
+            'map_2nd_floor'   => \get_stylesheet_directory_uri() . '/assets/images/aula/map_2nd_floor.png',
+            'second'          => \get_stylesheet_directory_uri() . '/assets/images/aula/2nd.png',
+            'map_groundfloor' => \get_stylesheet_directory_uri() . '/assets/images/aula/map_groundfloor.png',
+            'first'           => \get_stylesheet_directory_uri() . '/assets/images/aula/1st.png',
+            'map_basement'    => \get_stylesheet_directory_uri() . '/assets/images/aula/map_basement.png',
+            'basement'        => \get_stylesheet_directory_uri() . '/assets/images/aula/basement.png',
+            'hallway'         => \get_stylesheet_directory_uri() . '/assets/images/aula/hallway.png',
+            'food'            => \get_stylesheet_directory_uri() . '/assets/images/aula/food.png',
+            'shop'            => \get_stylesheet_directory_uri() . '/assets/images/aula/shop.png',
+            'loc_white'       => \get_stylesheet_directory_uri() . '/assets/images/aula/loc_white.png',
+            'press'           => \get_stylesheet_directory_uri() . '/assets/images/aula/press.png',
         ];
 
         return $images;
@@ -50,10 +50,10 @@ class PageLobbyDisplay extends BaseModel {
      */
     public function language_versions() {
         $language_versions = [
-            'en_url'     => get_the_permalink( pll_get_post( get_the_ID(), 'en' ) ),
-            'fi_url'     => get_the_permalink( pll_get_post( get_the_ID(), 'fi' ) ),
-            'current_fi' => pll_current_language() === 'fi' ? 'active' : '',
-            'current_en' => pll_current_language() === 'en' ? 'active' : '',
+            'en_url'     => \get_the_permalink( \pll_get_post( get_the_ID(), 'en' ) ),
+            'fi_url'     => \get_the_permalink( \pll_get_post( get_the_ID(), 'fi' ) ),
+            'current_fi' => \pll_current_language() === 'fi' ? 'active' : '',
+            'current_en' => \pll_current_language() === 'en' ? 'active' : '',
         ];
 
         return $language_versions;
@@ -87,14 +87,22 @@ class PageLobbyDisplay extends BaseModel {
         $query = new WP_Query( $args );
 
         return array_map( function ( $post ) {
-            $exhibition                = (object) get_fields( $post->ID );
-            $exhibition->title         = get_the_title( $post->ID );
-            $exhibition->image         = has_post_thumbnail( $post->ID ) ? get_the_post_thumbnail_url( $post->ID, 'medium_large' ) : null;
-            $exhibition->upcoming      = has_term( 'tulossa', 'exhibition-status', $post );
-            $exhibition->upcoming_text = __( 'Upcoming', 'tms-theme-vapriikki' );
-            $term_obj_list             = get_the_terms( $post->ID, 'exhibition-status' );
-            $terms_string              = join( '', wp_list_pluck( $term_obj_list, 'slug' ) );
-            $exhibition->terms_string  = str_replace( [ 'tulossa', 'arkisto', 'vaihtuvat', 'pysyvat' ], '', $terms_string );
+            $exhibition                = (object) \get_fields( $post->ID );
+            $exhibition->title         = \get_the_title( $post->ID );
+            $exhibition->image         = \has_post_thumbnail( $post->ID ) ? get_the_post_thumbnail_url( $post->ID, 'medium_large' ) : null;
+            $exhibition->upcoming      = \has_term( 'tulossa', 'exhibition-status', $post );
+            $exhibition->upcoming_text = \__( 'Upcoming', 'tms-theme-vapriikki' );
+            $term_obj_list             = \get_the_terms( $post->ID, 'exhibition-status' );
+            $terms_strings             = join( '_', \wp_list_pluck( $term_obj_list, 'slug' ) );
+            $terms_string              = str_replace( [ 'tulossa', 'arkisto', 'vaihtuvat', 'pysyvat' ], '', $terms_strings );
+            // Remove leading and trailing underscores
+            if ( str_starts_with( $terms_string, '_' ) ) {
+                $terms_string = substr( $terms_string, 1 );
+            }
+            if ( str_ends_with( $terms_string, '_' ) ) {
+                $terms_string = substr( $terms_string, 0, -1 );
+            }
+            $exhibition->terms_string  = $terms_string;
 
             return $exhibition;
 
