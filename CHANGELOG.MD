@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - TMS-1062: Increase menu-dropdown button size
+- TMS-1059: Add Sign up-section to event partial
+
+## [1.3.10] - 2024-11-07
+
 - TMS-1070: Change lobby-display images, allow single exhibition to be in two spaces
 
 ## [1.3.9] - 2024-09-25
