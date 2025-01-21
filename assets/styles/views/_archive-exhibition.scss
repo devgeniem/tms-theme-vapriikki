@@ -63,8 +63,11 @@
     }
 
     &__item-count-container {
-        width: 2.25rem;
-        height: 2.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
         margin-left: $theme-spacing;
         padding: $theme-spacing-half;
         border: 1px solid $color-ui-border-light;
@@ -77,14 +80,6 @@
             position: absolute;
             top: -.5rem;
             right: -4.5rem;
-        }
-    }
-
-    &__item-count {
-        margin-top: -.4rem;
-
-        @include from($desktop) {
-            margin-top: -.5rem;
         }
     }
 
