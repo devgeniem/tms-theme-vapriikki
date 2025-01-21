@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.12] - 2025-01-22
+
 - TMS-1096: Center exhibition-archive item-count
 
 ## [1.3.11] - 2024-11-25
