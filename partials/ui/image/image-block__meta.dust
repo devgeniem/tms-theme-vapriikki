@@ -13,7 +13,7 @@
 
             {?caption}
                 <div class="keep-vertical-spacing">
-                    {caption|html}
+                    {caption|kses}
                 </div>
             {/caption}
         </div>
