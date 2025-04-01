@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - TMS-1107: Add caption-text to image-block meta
 
+## [1.3.13] - 2025-02-24
+
+- TMS-1100: Show multiple locations for events if available
+
 ## [1.3.12] - 2025-01-22
 
 - TMS-1096: Center exhibition-archive item-count
