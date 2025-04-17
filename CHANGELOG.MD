@@ -8,8 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - TMS-1062: Increase menu-dropdown button size
-- TMS-1100: Show multiple locations for events if available
 - TMS-1107: Add caption-text to image-block meta
+
+- TMS-1139: Add another link-button to CTA-component
+
+## [1.3.14] - 2025-04-02
+
+- TMS-1107: Add caption-text to image-block meta
+
+## [1.3.13] - 2025-02-24
+
+- TMS-1100: Show multiple locations for events if available
 
 ## [1.3.12] - 2025-01-22
 
