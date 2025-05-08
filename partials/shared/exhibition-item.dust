@@ -1,6 +1,6 @@
 <div class="exhibition-item column is-6 is-4-desktop is-3-widescreen mb-3">
     {?exhibition.image}
-        <a href="{exhibition.permalink|url}" tabindex="-1">
+        <a href="{exhibition.permalink|url}">
             <span class="is-sr-only">
                 {exhibition.link_sr_text|html}
             </span>

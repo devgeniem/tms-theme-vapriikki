@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - TMS-1062: Increase menu-dropdown button size
-- TMS-1107: Add caption-text to image-block meta
+- TMS-1154: Remove tabindex from exhibition-item
+
+## [1.3.15] - 2025-04-30
 
 - TMS-1139: Add another link-button to CTA-component
 
