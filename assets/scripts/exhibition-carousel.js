@@ -22,6 +22,8 @@ export default class ExhibitionCarousel {
             previous: 'Previous',
             close: 'Close',
             goto: 'Go to slide',
+            slide: 'Slide',
+            centered: 'Centered',
         };
 
         const icons = {
@@ -48,10 +50,11 @@ export default class ExhibitionCarousel {
      * Constructs the carousel, or two if we have sync defined.
      *
      * @param {HTMLElement} container    Main carousel element.
+     * @param {Object}      buttons      Buttons.
      * @param {Object}      translations Translations.
      * @return {*|jQuery|HTMLElement} Constructed main carousel.
      */
-    constructCarousel( container = undefined, translations = {} ) {
+    constructCarousel( container = undefined, buttons = {}, translations = {} ) {
         const $container = $( container );
         const carousel = $container.find( '.exhibition-carousel__items--primary' );
 
