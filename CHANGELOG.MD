@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- TMS-1154: Remove tabindex from exhibition-item
 - TMS-1156: Fix exhibition-slider aria-label translations
 
 ## [1.3.15] - 2025-04-30
