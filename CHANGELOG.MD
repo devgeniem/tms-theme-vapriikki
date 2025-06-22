@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- TMS-1172: Add video-fields and functionality to hero-component
 - TMS-1154: Move display block styles to right element
 
 ## [1.3.16] - 2025-05-14
