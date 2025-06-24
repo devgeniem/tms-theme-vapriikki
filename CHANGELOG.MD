@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - TMS-1062: Increase menu-dropdown button size
+- TMS-1159: Fix lang-nav focus color
+
+## [1.4.0] - 2025-06-23
+
 - TMS-1172: Add video-fields and functionality to hero-component
 - TMS-1154: Move display block styles to right element
 
