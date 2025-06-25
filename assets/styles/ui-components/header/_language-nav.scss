@@ -61,6 +61,12 @@
                 outline-offset: .2rem;
                 outline: .125rem dotted $white !important;
             }
+
+            &:not(.has-text-primary) {
+                &:focus {
+                    color: $primary-invert !important;
+                }
+            }
         }
     }
 }
