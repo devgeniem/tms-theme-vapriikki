@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - TMS-1062: Increase menu-dropdown button size
 - TMS-1159: Fix lang-nav focus color
+- TMS-1160: Fix elements focus outline thickness and colors
 
 ## [1.4.0] - 2025-06-23
 
