@@ -177,13 +177,17 @@ main {
     }
 
     .has-background-primary {
-        a {
-            &:focus {
-                outline-color: $primary-invert !important;
-            }
-
+        a:not(.pill):not(.button) {
             &:active {
                 color: $primary-invert !important;
+            }
+        }
+
+        a:not(.pill):not(.button),
+        .button,
+        .pill {
+            &:focus {
+                outline-color: $primary-invert !important;
             }
         }
     }
