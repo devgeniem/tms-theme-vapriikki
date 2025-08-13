@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - TMS-1160: Fix elements focus outline thickness and colors
+- TMS-1159: Fix lang-nav focus color
 
 ## [1.4.0] - 2025-06-23
 
