@@ -44,7 +44,7 @@ $button-secondary-border-color: $button-primary-border-color;
     &:focus,
     &.is-focused {
         border-color: $button-primary-border-color !important;
-        outline: .125rem dotted $black !important;
+        outline: .2rem dotted $black !important;
         outline-offset: .25rem !important;
     }
 
