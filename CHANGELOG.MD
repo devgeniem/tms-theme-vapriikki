@@ -8,9 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - TMS-1062: Increase menu-dropdown button size
-- TMS-1159: Fix lang-nav focus color
-- TMS-1160: Fix elements focus outline thickness and colors
 - TMS-1163: Search results breadcrumbs accessibility fixes
+- TMS-1190: Add height to single exhibition hero on large monitors
+
+## [1.4.1] - 2025-08-13
+
+- TMS-1160: Fix elements focus outline thickness and colors
+- TMS-1159: Fix lang-nav focus color
 
 ## [1.4.0] - 2025-06-23
 
