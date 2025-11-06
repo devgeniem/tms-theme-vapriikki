@@ -626,8 +626,7 @@ class ArchiveExhibition extends BaseModel {
 
             // Get single dates between start_date and end_date for the exhibitions
             $start = new DateTime( $additional_fields['start_date'] );
-            $end   = clone $start;
-            $end->modify( $additional_fields['end_date'] );
+            $end   = new DateTime( $additional_fields['end_date'] );
             $end->setTime( 0, 0, 1 ); // Add time to the end_day so it will be included
             $interval    = new DateInterval( 'P1D' ); // Interval period 1 day
             $date_period = new DatePeriod( $start, $interval, $end );
