@@ -114,19 +114,6 @@ select {
     border: 0.125rem dashed $black;
 }
 
-.gform_button_select_files,
-.gform_delete_file {
-
-    &:hover,
-    &:focus {
-        border-color: $primary-invert !important;
-        background-color: $primary !important;
-        color: $primary-invert !important;
-        outline: 0.2rem dotted $black !important;
-        outline-offset: 0.25rem !important;
-    }
-}
-
 .gform_delete_file {
     padding: 0.5rem;
     margin-right: 0.5rem;
