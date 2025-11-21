@@ -52,20 +52,16 @@
                 color: $primary !important;
             }
 
-            &:hover {
-                background-color: $link-hover !important;
-                color: $primary-invert !important;
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: $primary-invert !important;
+                color: $primary !important;
             }
 
             &:focus {
                 outline-offset: .2rem;
                 outline: .2rem dotted $white !important;
-            }
-
-            &:not(.has-text-primary) {
-                &:focus {
-                    color: $primary-invert !important;
-                }
             }
         }
     }
