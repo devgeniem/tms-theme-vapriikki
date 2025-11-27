@@ -6,11 +6,15 @@
     }
 
     a {
-        background-color: $primary-invert;
-        border: 1px solid $primary-invert;
+        &,
+        &:hover,
+        &:focus {
+            background-color: $primary-invert;
+            border: 1px solid $primary-invert;
 
-        .icon {
-            fill: $primary !important;
+            .icon {
+                fill: $primary !important;
+            }
         }
     }
 
