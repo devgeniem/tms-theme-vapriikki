@@ -5,12 +5,13 @@
         font-weight: 400;
     }
 
-    a {
+    a,
+    a.has-background-accent {
         &,
         &:hover,
         &:focus {
-            background-color: $primary-invert;
-            border: 1px solid $primary-invert;
+            background-color: $primary-invert !important;
+            border: 1px solid $primary !important;
 
             .icon {
                 fill: $primary !important;
