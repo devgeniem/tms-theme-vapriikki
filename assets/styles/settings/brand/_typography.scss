@@ -177,7 +177,7 @@ main {
     }
 
     .has-background-primary {
-        a:not(.pill):not(.button) {
+        a:not(.pill):not(.button):not(.post-link) {
             &:active {
                 color: $primary-invert !important;
             }
