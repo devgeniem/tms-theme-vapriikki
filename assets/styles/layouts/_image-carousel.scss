@@ -39,11 +39,11 @@
     &__modal-control {
 
         &.slick-arrow {
-            background-color: transparent;
+            background-color: $white !important;
             border: none;
 
             .icon {
-                fill: $white;
+                fill: $black !important;
             }
         }
     }
