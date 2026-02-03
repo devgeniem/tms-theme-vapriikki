@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - TMS-1164: Remove color changing for button hover-styles
 
+## [1.5.1] - 2025-11-06
+
+- TMS-1214: Fix fatal error for archive-exhition
+
+## [1.5.0] - 2025-10-01
+
+- TMS-1201: Add iframe-field for video fields
+
 ## [1.4.2] - 2025-09-08
 
 - TMS-1190: Add height to single exhibition hero on large monitors
