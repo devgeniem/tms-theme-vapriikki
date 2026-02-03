@@ -13,23 +13,7 @@
         color: inherit !important;
     }
 
-    &:not(span) {
-        &:hover,
-        &:focus {
-            color: $primary !important;
-            background-color: $primary-invert !important;
-            border-color: $primary !important;
-        }
-    }
-
-    &.is-active {
-        &:not(span) {
-           
-            &:hover,
-            &:focus {
-                background-color: $primary-invert !important;
-                color: $primary !important;
-            }
-        }
+    &.is-primary-invert {
+        color: $primary !important;
     }
 }

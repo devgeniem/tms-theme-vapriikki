@@ -160,7 +160,7 @@ h4,
 $link-outline-color: $primary;
 
 main {
-    a:not(.pill):not(.button) {
+    a:not(.pill):not(.button):not(.post-link):not(.has-text-primary) {
         text-underline-offset: .125rem;
 
         &:focus {

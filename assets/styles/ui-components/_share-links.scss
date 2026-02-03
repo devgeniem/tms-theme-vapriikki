@@ -5,22 +5,16 @@
         font-weight: 400;
     }
 
-    a {
-        background-color: $primary-invert;
-        border: 1px solid $primary-invert;
-
-        .icon {
-            fill: $primary !important;
-        }
-
+    a,
+    a.has-background-accent {
+        &,
         &:hover,
-        &.is-hovered,
-        &:focus,
-        &.is-focused {
-            background-color: $primary !important;
+        &:focus {
+            background-color: $primary-invert !important;
+            border: 1px solid $primary !important;
 
             .icon {
-                fill: $primary-invert !important;
+                fill: $primary !important;
             }
         }
     }

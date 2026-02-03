@@ -34,22 +34,6 @@
     #js-search-toggle {
         margin-right: $theme-spacing-oneandhalf !important;
         margin-left: $theme-spacing-oneandhalf !important;
-
-        &:hover,
-        &:focus {
-            background-color: $link-hover !important;
-            color: $primary-invert !important;
-
-            .icon {
-                fill: $primary-invert !important;
-            }
-        }
-
-        &.is-active {
-            .icon {
-                fill: $primary-invert !important;
-            }
-        }
     }
 
     &__popup {
