@@ -8,8 +8,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - TMS-1062: Increase menu-dropdown button size
-- TMS-1214: Fix fatal error for archive-exhition
+- TMS-1263: Fix form button hover color
+
+## [1.6.0] - 2026-02-03
+
 - TMS-1164: Remove color changing for button hover-styles
+
+## [1.5.1] - 2025-11-06
+
+- TMS-1214: Fix fatal error for archive-exhition
 
 ## [1.5.0] - 2025-10-01
 
