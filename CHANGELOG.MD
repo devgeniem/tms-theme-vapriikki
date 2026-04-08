@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - TMS-1062: Increase menu-dropdown button size
 - TMS-1263: Fix form button hover color
+- TMS-1260: Add sr-only text for opening image-blocks modal
 
 ## [1.6.0] - 2026-02-03
 
