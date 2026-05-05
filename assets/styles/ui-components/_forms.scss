@@ -33,8 +33,8 @@ select {
 
         &:hover,
         &:focus {
-            color: $primary !important;
-            background-color: $primary-invert !important;
+            color: $primary-invert !important;
+            background-color: $primary !important;
         }
     }
 
@@ -55,13 +55,13 @@ select {
         &:hover,
         &:focus {
             &:after {
-                background-color: $primary;
+                background-color: $primary-invert;
             }
         }
 
         &:active {
             &:after {
-                background-color: $primary;
+                background-color: $primary-invert;
             }
         }
     }
