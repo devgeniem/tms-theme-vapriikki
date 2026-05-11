@@ -563,14 +563,20 @@ class ArchiveExhibition extends BaseModel {
         $today  = new DateTime( 'now' );
         $today->setTime( '0', '0' );
 
-        if ( ! get_post_meta( $item->ID, 'start_date', true ) && ! get_post_meta( $item->ID, 'end_date', true ) ) {
+        if ( ! \get_post_meta( $item->ID, 'start_date', true ) && ! \get_post_meta( $item->ID, 'end_date', true ) ) {
             return true;
         }
 
-        $start_date = DateTime::createFromFormat( $format, get_post_meta( $item->ID, 'start_date', true ) );
+        $start_date = DateTime::createFromFormat( $format, \get_post_meta( $item->ID, 'start_date', true ) );
         $start_date->setTime( '0', '0' );
 
-        $end_date = DateTime::createFromFormat( $format, get_post_meta( $item->ID, 'end_date', true ) );
+        $end_value = \get_post_meta( $item->ID, 'end_date', true );
+
+        if ( empty( $end_value ) ) {
+            return $today >= $start_date;
+        }
+
+        $end_date = DateTime::createFromFormat( $format, $end_value );
         $end_date->setTime( '23', '59' );
 
         return $today >= $start_date && $today <= $end_date;
@@ -587,11 +593,11 @@ class ArchiveExhibition extends BaseModel {
         $format = 'Ymd';
         $today  = new DateTime( 'now' );
 
-        if ( ! get_post_meta( $item->ID, 'start_date', true ) ) {
+        if ( ! \get_post_meta( $item->ID, 'start_date', true ) ) {
             return false;
         }
 
-        $start_date = DateTime::createFromFormat( $format, get_post_meta( $item->ID, 'start_date', true ) );
+        $start_date = DateTime::createFromFormat( $format, \get_post_meta( $item->ID, 'start_date', true ) );
 
         return $start_date >= $today;
     }
