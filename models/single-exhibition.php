@@ -40,16 +40,24 @@ class SingleExhibition extends BaseModel {
      * @param int $id The post ID.
      */
     public static function get_date( $id ) {
-        $start_date    = get_field( 'start_date', $id );
+        $start_date    = \get_field( 'start_date', $id );
+        $end_date      = \get_field( 'end_date', $id );
         $opening_times = '';
 
         if ( ! empty( $start_date ) ) {
-            $opening_times = self::reformat_datetime_string( $start_date );
-            $end_date      = get_field( 'end_date', $id );
+            // Show start date by itself only while it is still in the future.
+            if ( empty( $end_date ) ) {
+                $today = \current_time( 'Y-m-d' );
 
-            if ( ! empty( $end_date ) ) {
-                $opening_times .= ' - ' . self::reformat_datetime_string( $end_date );
+                if ( $start_date > $today ) {
+                    $opening_times = self::reformat_datetime_string( $start_date );
+                }
+
+                return $opening_times;
             }
+
+            $opening_times = self::reformat_datetime_string( $start_date );
+            $opening_times .= ' - ' . self::reformat_datetime_string( $end_date );
         }
 
         return $opening_times;

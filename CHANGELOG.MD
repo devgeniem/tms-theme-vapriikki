@@ -8,8 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - TMS-1062: Increase menu-dropdown button size
-- TMS-1263: Fix form button hover color
 - Update Node, webpack & dependency versions
+- TMS-1273: Show exhibition start-date if its upcoming and no end-date is set
+
+## [1.6.2] - 2026-05-05
+
+- TMS-1263: Fix form button hover color
 
 ## [1.6.1] - 2026-04-12
 
