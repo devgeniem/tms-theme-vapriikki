@@ -563,20 +563,36 @@ class ArchiveExhibition extends BaseModel {
         $today  = new DateTime( 'now' );
         $today->setTime( '0', '0' );
 
-        if ( ! \get_post_meta( $item->ID, 'start_date', true ) && ! \get_post_meta( $item->ID, 'end_date', true ) ) {
+        $start_value = \get_post_meta( $item->ID, 'start_date', true );
+        $end_value   = \get_post_meta( $item->ID, 'end_date', true );
+
+        if ( empty( $start_value ) && empty( $end_value ) ) {
             return true;
         }
 
-        $start_date = DateTime::createFromFormat( $format, \get_post_meta( $item->ID, 'start_date', true ) );
-        $start_date->setTime( '0', '0' );
+        // Guard unsupported end_date-only/invalid start_date cases to avoid DateTime fatal errors.
+        if ( empty( $start_value ) ) {
+            return true;
+        }
 
-        $end_value = \get_post_meta( $item->ID, 'end_date', true );
+        $start_date = DateTime::createFromFormat( $format, $start_value );
+
+        if ( ! $start_date ) {
+            return true;
+        }
+
+        $start_date->setTime( '0', '0' );
 
         if ( empty( $end_value ) ) {
             return $today >= $start_date;
         }
 
         $end_date = DateTime::createFromFormat( $format, $end_value );
+
+        if ( ! $end_date ) {
+            return $today >= $start_date;
+        }
+
         $end_date->setTime( '23', '59' );
 
         return $today >= $start_date && $today <= $end_date;
