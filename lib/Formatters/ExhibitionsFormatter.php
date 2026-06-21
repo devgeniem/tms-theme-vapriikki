@@ -82,20 +82,23 @@ class ExhibitionsFormatter implements Formatter {
             foreach ( $wp_query->posts as $post_item ) {
 
                 $start_date = strtotime( trim( \get_field( 'start_date', $post_item->ID ) ?? '' ) );
+                $end_date   = strtotime( trim( \get_field( 'end_date', $post_item->ID ) ?? '' ) );
+                $today      = strtotime( \current_time( 'Y-m-d' ) );
                 $dates      = '';
 
                 if ( ! empty( $start_date ) ) {
-                    $dates    = date( 'd.m.Y', $start_date );
-                    $end_date = strtotime( trim( \get_field( 'end_date', $post_item->ID ) ?? '' ) );
-
                     if ( ! empty( $end_date ) ) {
+                        $dates  = date( 'd.m.Y', $start_date );
                         $dates .= ' - ' . date( 'd.m.Y', $end_date );
+                    }
+                    elseif ( $start_date > $today ) {
+                        $dates = date( 'd.m.Y', $start_date );
                     }
                 }
 
                 $post_item->dates          = $dates;
                 $post_item->is_upcoming    = \get_field( 'is_upcoming', $post_item->ID );
-                $post_item->upcoming_badge = __( 'Upcoming', 'tms-theme-vapriikki' );
+                $post_item->upcoming_badge = \__( 'Upcoming', 'tms-theme-vapriikki' );
                 $data['posts'][]           = Exhibition::enrich_post( $post_item, true, true );
             }
         }
