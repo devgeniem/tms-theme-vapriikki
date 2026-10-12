@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - TMS-1062: Increase menu-dropdown button size
 - Update Node, webpack & dependency versions
+- TMS-1298: Fix exhibition archive crash for start-only dates
+
+## [1.6.3] - 2026-06-22
+
 - TMS-1273: Show exhibition start-date if its upcoming and no end-date is set
 
 ## [1.6.2] - 2026-05-05
