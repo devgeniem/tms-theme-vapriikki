@@ -647,8 +647,22 @@ class ArchiveExhibition extends BaseModel {
             }
 
             // Get single dates between start_date and end_date for the exhibitions
-            $start = new DateTime( $additional_fields['start_date'] );
-            $end   = new DateTime( $additional_fields['end_date'] );
+            $start_value = $additional_fields['start_date'] ?? '';
+            $end_value   = $additional_fields['end_date'] ?? '';
+
+            // Guard start-only exhibitions to avoid fatals when end_date is empty,
+            // while still keeping the single start-date in the item data.
+            if ( empty( $start_value ) ) {
+                return $item;
+            }
+
+            if ( empty( $end_value ) ) {
+                $item->dates = [ ( new DateTime( $start_value ) )->format( 'Y-m-d' ) ];
+                return $item;
+            }
+
+            $start = new DateTime( $start_value );
+            $end   = new DateTime( $end_value );
             $end->setTime( 0, 0, 1 ); // Add time to the end_day so it will be included
             $interval    = new DateInterval( 'P1D' ); // Interval period 1 day
             $date_period = new DatePeriod( $start, $interval, $end );
